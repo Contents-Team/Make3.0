@@ -16,6 +16,29 @@
 
 ### Security
 
+## [0.1.2] - 2026-05-12
+
+### Changed
+- `doc/MAKE_FORMAT.md` 네이밍 규칙 v2 → v3 보강 — **자가설명 강화**
+  - **목적 명문화**: "이름만 봐도 (a) 파일 종류·확장자, (b) 소속 자산, (c) 역할·상태 즉시 파악" 을 최우선 목적으로 선언
+  - v2 의 "Kind prefix 선택화" 결정 번복 → **3-letter prefix 필수** (`mdl_`/`mat_`/`tex_`/`img_`/`aud_`/`vid_`/`anm_`/`evt_`/`scn_`/`nod_`)
+  - 단일 문자 모호성 (`M` = Model? Material?) 은 3자로 해소
+  - **Asset Namespace** 도입 — `<asset>__<component>` (이중 언더스코어) 로 부모-자식 표현
+  - **Texture 채널 vocab** — `_albedo`, `_normal`, `_roughness`, `_metallic`, `_ao`, `_emissive` 등 9종
+  - **UI Image 상태 vocab** — `_default`, `_hover`, `_pressed`, `_active`, `_disabled`, `_focused` 6종
+  - **Texture vs UI Image 분리** — 둘 다 PNG지만 `tex_` (3D 머티리얼 입력) vs `img_` (2D 레이어) 로 구분
+  - **확장자 추론 매핑 표** — prefix 별 예상 확장자 명문화
+  - **한국어·고유명사 정책** — 로마자 슬러그 + `doc/GLOSSARY.md` 등록 의무화
+  - **이중 인코딩 트레이드오프 인정** — v2 의 "VNT 필드와 중복" 비판 번복: 자가설명 가치가 동기화 비용을 능가
+
+### Added
+- `doc/GLOSSARY.md` — 로마자 슬러그 ↔ 한국어 정식 명칭 매핑. v3 네이밍 정책 의무 부속 문서
+- `doc/MAKE_FORMAT.md` 검증 체크리스트에 v3 항목 추가:
+  - Kind prefix 시작 검증
+  - 이중 언더스코어 namespace 검증
+  - Texture/UI 상태 suffix 검증
+  - GLOSSARY 등록 검증
+
 ## [0.1.1] - 2026-05-12
 
 ### Changed
