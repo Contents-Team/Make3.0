@@ -16,6 +16,22 @@
 
 ### Security
 
+## [0.1.1] - 2026-05-12
+
+### Changed
+- `doc/MAKE_FORMAT.md` 네이밍 규칙 v1 → v2 보강 — 자기반박 8개 허점 분석 후 정정
+  - **3-Layer Identity** 도입: `ID` (UUID, 불변, machine) / `Name` (ASCII slug, code) / `DisplayTitle` (Unicode, user-facing)
+  - 단일 문자 prefix (`S/A/I/V/M/T/E`) → 선택적 풀워드 prefix. VNT type 필드 활용
+  - 2자리 `<NN>` 순번 제거 (실측 142 이미지 vs 최대 100 충돌). 필요 시 별도 `order` 필드 (10단위)
+  - 영문 강제 → identifier 만 ASCII, DisplayTitle 은 Unicode (한국어 OK) + i18n
+  - Material instance vs definition 구분 명시
+  - 유일성 scope 명시 — ID global, name parent-local
+  - 정규식 분리 — identifier `^[a-z][a-z0-9_]*$` + display (제어문자만 금지)
+  - OriginPath 정책 3단계화 — 로컬/공유/외부배포
+
+### Removed
+- v1 의 `<단일문자><NN>_<slug-en>` 노드명 권장 패턴 (over-engineering, scope·scaling 결함)
+
 ## [0.1.0] - 2026-05-12
 
 ### Added
