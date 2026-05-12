@@ -1,0 +1,9 @@
+{
+  "name": "Make3.0",
+  "navigation": [
+    { "group": "Start", "pages": ["start/installation", "start/quickstart"] },
+    { "group": "Guides", "pages": ["guides/README"] },
+    { "group": "Reference", "pages": ["api/README", "cli/README"] },
+    { "group": "Deploy", "pages": ["deploy/README"] }
+  ]
+}
