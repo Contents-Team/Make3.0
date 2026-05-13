@@ -16,6 +16,47 @@
 
 ### Security
 
+## [0.1.5] - 2026-05-13
+
+### Changed
+- `doc/MAKE_FORMAT.md` 네이밍 규칙 v5 → v6 보강 — **3-Tier 책임 모델로 재구성**
+  - **실측 분석 기반** — `Make Templete_20260512.make` (513 노드) 의 안티패턴·실사용 vocab 추출
+  - **Two-Layer (L1/L2) → Three-Tier (T1/T2/T3)** 재구조화
+    - **T1** (Source Asset, filesystem): v5 L1 유지 — PascalCase + 확장자
+    - **T2** (Instance, Make Editor visible, v6 신규): **kind prefix 폐지** — Make Editor 타입 아이콘이 종류 알려줌 → 인스턴스명 간결성 우선
+    - **T3** (System-Derived, v4·v5 본문 유지): 머티리얼·중간 mesh 등 사용자 미편집 객체 — `lower_snake_case + prefix` 유지
+  - **인스턴스 명명 정책 대전환** (T2):
+    - kind prefix (`mdl_`/`img_`/`txt_` 등) 폐지
+    - PascalCase + 단일 `_`
+    - 이중 언더스코어 `__` 폐지 (트리 컨텍스트가 위계 표현)
+    - 하이픈 **명시 금지**
+    - 닫힌 sibling vocab(L/R/U/D, In/Out) 단문자 허용
+  - **State Vocab 축약 (v6)**:
+    - 3-letter PascalCase: `_Def`/`_Prs`/`_On`/`_Off`/`_Sel`
+    - `_Hover`/`_Focused`/`_Highlight` 제거 (VR/터치 환경)
+    - `Active/Disabled` → `On/Off` 통합 (시각 상태 우선, 의미 분기는 VNT 필드에서)
+  - **Audio 카테고리 갱신**:
+    - `BGM`/`SFX`/`NAR` 3종 (구 `VO` → `NAR`, `AMB` 제거)
+    - 카테고리·description 사이 `_` 삽입 (`BGM_Tutorial_01.wav`)
+  - **Video 카테고리 풀이 명문화**:
+    - `CUT` (Cutscene), `TUT` (Tutorial), `LOOP`, `INTRO`, `OUTRO`
+    - 동일하게 `_` 삽입 (`TUT_BatterySwap_Step01_01.mp4`)
+  - **UI Family Vocab (v6 신규, 권장)**: `GNB`/`LNB`/`Btn`/`Nav`/`Pnl`/`Ico`/`Bg`/`Logo`/`Tip`/`Txt` 10종 — T2 인스턴스 인계 직관성
+  - **Animation Naming (v6 신규)**:
+    - prefix 폐지 (animations[] 배열 위치가 타입 선언)
+    - `<Target>_<Act>[_<Dir>]` 패턴
+    - Action vocab: `Rot`/`Scl`/`Mov`/`Clr`/`Op` + compound `ZI`/`ZO`/`FI`/`FO`/`Tx`/`Pop`
+    - Direction vocab: `L`/`R`/`U`/`D`/`CW`/`CCW`
+    - 다중 속성 결정론적 순서: `Rot → Scl → Mov → Clr → Op`
+    - `^new Clip\d*$` 패턴 임포트 차단
+  - **`_v<NN>` marker 정책 완화**: T1 옵션, T2 금지
+  - 실측 파일 변환 예시 — 11개 Contents 페이지, 4-방향 회전 UI, 7개 default 애니메이션 매핑
+  - 검증 체크리스트 T2·Animation 항목 12개 추가
+
+### Added
+- `doc/MAKE_FORMAT.md` 의 `Three-Tier Naming Model`, `T2 — Instance Naming`, `Animation Naming` 섹션
+- `v5 → v6 보강 근거` 섹션 — 실측 갭 10개 + 자체 반박 4개
+
 ## [0.1.4] - 2026-05-13
 
 ### Changed
