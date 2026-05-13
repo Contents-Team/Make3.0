@@ -1,7 +1,7 @@
 # HANDOFF — Continuation Context for Next Session
 
 - Status: Active
-- Last update: 2026-05-12 (v0.1.3)
+- Last update: 2026-05-13 (v0.1.4)
 - 목적: 새 Claude 세션이 이 문서 1개만 읽으면 즉시 작업 이어받기 가능
 
 ## Project at a Glance
@@ -9,7 +9,7 @@
 - **이름**: Make3.0
 - **경로 (로컬)**: `C:\Users\VIRNECT\Downloads\work\01_Other\Make3.0`
 - **GitHub**: https://github.com/HamIsBadass/Make3.0 (private, `HamIsBadass` 계정)
-- **현재 버전**: v0.1.3
+- **현재 버전**: v0.1.4
 - **브랜치**: `main`
 - **타겟 도메인**: VIRNECT 의 `.make` 파일 (VR/AR 콘텐츠 패키지) 분석·문서화
 
@@ -19,11 +19,16 @@
 - 파일: `doc/MAKE_FORMAT.md`
 - 내용: glTF 2.0 GLB + VNT_* 확장 카탈로그 + 네이밍 규칙 v4
 
-### 2. 네이밍 규칙 v4 (현재 채택본)
-- **3-Layer Identity**: ID (UUID, 불변) / Name (ASCII slug, 변경 가능) / DisplayTitle (Unicode, 사용자 화면)
-- **Kind prefix 강제** (3-letter): `mdl_`/`mat_`/`tex_`/`img_`/`aud_`/`vid_`/`anm_`/`evt_`/`scn_`/`nod_`
-- **Asset Namespace**: `<asset>__<component>` (이중 언더스코어)
-- **Tier Responsibility Matrix**:
+### 2. 네이밍 규칙 v5 (현재 채택본)
+- **Two-Layer Model** (v5 신규):
+  - **L1 — Source Asset filesystem** (`.fbx`/`.png`/`.wav`/`.mp4`): PascalCase + `_v<NN>` marker, `v` 가 Source/Instance 구분자
+  - **L1 타입별 규칙**: FBX (타입 토큰 없음), PNG (Role 토큰 `ALB`/`NRM`/`Sprite` 등 필수), Audio (카테고리 prefix `BGM`/`SFX`/`VO`/`AMB`), Video (컨텍스트 prefix `CUT`/`TUT`/`LOOP` 등)
+  - **L2 — `.make` Internal Identifier**: lower_snake_case + 3-letter kind prefix (구 v4)
+  - **L1 → L2 Normalization**: 임포트 파이프라인이 자동 변환 (예: `GlassBottle_Cap_v01.fbx` → `mdl_glass_bottle__cap`)
+- **3-Layer Identity** (v2 이후 유지): ID (UUID, 불변) / Name (ASCII slug) / DisplayTitle (Unicode)
+- **Kind prefix 강제** (L2, 3-letter): `mdl_`/`mat_`/`tex_`/`img_`/`aud_`/`vid_`/`anm_`/`evt_`/`scn_`/`nod_`
+- **Asset Namespace** (L2): `<asset>__<component>` (이중 언더스코어)
+- **Tier Responsibility Matrix** (v4 이후 유지):
   - Tier A (user-uploaded): 사용자 슬러그 + 툴 prefix
   - Tier B (user-composed): 사용자 의미 + 툴 prefix
   - Tier C (system-derived): **시스템 자동 mirror, 사람 입력 0**
@@ -65,7 +70,8 @@ function Extract-GltfJson($path) {
 | v1 | 단일 문자 prefix + `<NN>` 순번 + 영문 강제 | 초기 |
 | v2 | 3-Layer Identity 도입, prefix 선택화 | 자기반박 8개 허점 |
 | v3 | mandatory 3-letter prefix + asset namespace + suffix vocab | 사용자: "이름만 봐도 알아야 함" |
-| **v4** | **Tier 책임 분리 (Tier C 자동 파생)** | 사용자: "Tier C 명명 불필요" + "에이전트도 읽음" |
+| v4 | Tier 책임 분리 (Tier C 자동 파생) | 사용자: "Tier C 명명 불필요" + "에이전트도 읽음" |
+| **v5** | **소스 에셋 파일시스템 레이어 (L1) 추가** — PascalCase + `v<NN>` marker | 외부 제안 `Make Asset Naming Convention v0.5` 통합 |
 
 ## Git 상태
 

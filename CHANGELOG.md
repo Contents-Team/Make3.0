@@ -16,6 +16,29 @@
 
 ### Security
 
+## [0.1.4] - 2026-05-13
+
+### Changed
+- `doc/MAKE_FORMAT.md` 네이밍 규칙 v4 → v5 보강 — **소스 에셋 파일시스템 레이어 추가**
+  - 외부 제안 `Make Asset Naming Convention v0.5` (HamIsBadass, 2026-05-13) 검토·통합
+  - 핵심 인사이트: v4 까지는 `.make` 내부 식별자(L2) 만 규정 — 임포트 직전 외부 소스 파일(FBX/PNG/WAV/MP4) 명명 규약 부재
+  - **Two-Layer Naming Model** 신설:
+    - L1 (Source Asset, filesystem): PascalCase + `_v<NN>` marker + 확장자
+    - L2 (`.make` Internal): lower_snake_case + 3-letter kind prefix (구 v4 본문 유지)
+  - **L1 → L2 Normalization** 매핑 명문화 — 임포트 파이프라인이 자동 수행
+  - **Source Asset Filesystem Naming** 섹션 신설 (L1 본문):
+    - Global Rules + `v` marker 로 Source vs Instance 구분
+    - 타입별 규칙: FBX / PNG (Role 토큰 `ALB`/`NRM`/`Sprite` 등) / WAV·MP3 (카테고리 prefix `BGM`/`SFX`/`VO`/`AMB`) / MP4 (컨텍스트 prefix `CUT`/`TUT`/`LOOP`/`INTRO`/`OUTRO`) / Font
+    - Hierarchy 규칙: 자식 부위 FBX 의 부모 이름 포함 의무
+    - State 토큰 (`Open`/`Broken`/`Closed`/`Damaged`) 정의
+  - **변경 타당성 분석 표** 추가 (v4 → v5 보강 근거) — 외부 제안 항목별 채택/부분채택 판정
+  - 검증 체크리스트에 L1 항목 10개 추가
+- 원본 외부 제안 파일을 `doc/experimental/2026-05-13-make-asset-naming-v0.5-source.md` 로 보존
+
+### Added
+- `doc/MAKE_FORMAT.md` 의 `Two-Layer Naming Model`, `L1 → L2 Normalization`, `Source Asset Filesystem Naming` 섹션
+- `doc/experimental/2026-05-13-make-asset-naming-v0.5-source.md` — 통합 전 원본 제안서 아카이브
+
 ## [0.1.3] - 2026-05-12
 
 ### Changed
