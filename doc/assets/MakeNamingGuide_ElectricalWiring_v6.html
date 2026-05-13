@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>전기내선공사 가상 실습 — 네이밍 가이드 (v6)</title>
+<style>
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  font-family: 'Malgun Gothic', '맑은 고딕', system-ui, sans-serif;
+  background: #2b2b2b;
+  color: #222;
+}
+.deck { position: relative; }
+.slide {
+  width: 1280px;
+  min-height: 720px;
+  margin: 24px auto;
+  padding: 40px 56px;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+  page-break-after: always;
+  break-after: page;
+  position: relative;
+  overflow: hidden;
+}
+.slide h1 {
+  margin: 0 0 8px 0;
+  font-size: 32px;
+  color: #1f3864;
+  border-bottom: 3px solid #2f5496;
+  padding-bottom: 10px;
+}
+.slide h2 {
+  margin: 24px 0 10px 0;
+  font-size: 22px;
+  color: #2f5496;
+}
+.slide h3 {
+  margin: 16px 0 6px 0;
+  font-size: 18px;
+  color: #1f3864;
+}
+.slide p, .slide li { font-size: 15px; line-height: 1.55; }
+.slide .subtitle { color: #595959; font-size: 16px; margin-top: -4px; }
+.page-num {
+  position: absolute; right: 24px; bottom: 16px;
+  color: #888; font-size: 13px;
+}
+.cover { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 200px; }
+.cover h1 { font-size: 44px; border: 0; color: #1f3864; }
+.cover .tag { font-size: 18px; color: #5a5a5a; margin: 10px 0; }
+.cover .meta { margin-top: 60px; color: #777; font-size: 14px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 10px 0 18px 0;
+}
+th {
+  background: #2f5496; color: #fff;
+  padding: 8px 10px; text-align: left;
+  font-weight: 600;
+}
+td {
+  padding: 7px 10px; border-bottom: 1px solid #d9d9d9;
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: #f4f6fa; }
+.mono { font-family: 'Consolas', 'D2Coding', monospace; font-size: 13px; }
+.tag-T1 { background: #c5e0b4; color: #385723; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+.tag-T2 { background: #bdd7ee; color: #1f3864; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+.tag-T3 { background: #ffd966; color: #7f5f00; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+.tag-ANIM { background: #f4b183; color: #843c0c; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+.note {
+  background: #fff2cc; border-left: 4px solid #ffc000;
+  padding: 10px 14px; font-size: 13px; margin: 12px 0;
+  color: #5a4500;
+}
+.tree {
+  font-family: 'Consolas', monospace; font-size: 13px;
+  background: #f4f6fa; padding: 18px 22px; border-left: 4px solid #2f5496;
+  white-space: pre; line-height: 1.65;
+  border-radius: 4px;
+}
+.colorbox { display: inline-block; width: 16px; height: 16px; vertical-align: middle; border: 1px solid #999; border-radius: 3px; margin-right: 6px; }
+.cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.toc li { margin: 6px 0; }
+.principle {
+  background: #f4f6fa; border-left: 4px solid #2f5496;
+  padding: 12px 16px; margin: 8px 0; border-radius: 4px;
+}
+.principle b { color: #1f3864; }
+.checklist li { list-style: none; margin: 5px 0; padding-left: 24px; position: relative; }
+.checklist li::before {
+  content: '☐'; position: absolute; left: 0; color: #2f5496; font-size: 18px; line-height: 1;
+}
+@media print {
+  body { background: #fff; }
+  .slide { box-shadow: none; margin: 0; }
+  .nav { display: none !important; }
+}
+.nav {
+  position: fixed; bottom: 20px; right: 20px;
+  background: rgba(0,0,0,0.65); color: #fff; padding: 8px 14px; border-radius: 24px;
+  font-size: 13px; user-select: none;
+  z-index: 100;
+}
+.nav span { font-weight: bold; padding: 0 6px; }
+</style>
+</head>
+<body>
+<div class="deck">
+<section class="slide"><div class="page-num">슬라이드 1 / 22</div>
+<div class="cover">
+  <h1>전기내선공사 가상 실습</h1>
+  <h1 style="margin-top: -10px;">3D 모델·전선 네이밍 가이드</h1>
+  <div class="tag">Make Asset Naming Convention v6 적용</div>
+  <div class="tag">한국폴리텍신기술교육원 협력 / VR·XR 실습 콘텐츠</div>
+  <div class="meta">
+    원본 기획서: [폴리텍신기술교육원]_전기내선공사 가상 실습_SB_v1.0.pptx (127 슬라이드)<br>
+    명명 규칙: doc/MAKE_FORMAT.md 의 Naming Rules v6<br>
+    작성일: 2026-05-13
+  </div>
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 2 / 22</div>
+<h1>목차</h1>
+<ol class="toc" style="font-size:16px; line-height:1.85; columns: 2; column-gap: 40px;">
+<li>1. 표지</li>
+<li>2. 이 문서의 목적·범위</li>
+<li>3. v6 명명 규칙 핵심 5가지</li>
+<li>4. 3-Tier 모델 — T1·T2·T3 한눈에</li>
+<li>5. 전선 색상 약자 정의 (5종)</li>
+<li>6. 카테고리 — 단자대 (소켓베이스 / Terminal Block)</li>
+<li>7. 카테고리 — 동작검사용 기구 (Operation Test)</li>
+<li>8. 카테고리 — 제어판 기구 (Control Panel Devices)</li>
+<li>9. 카테고리 — 스위치 / 버튼 (Switch / Button)</li>
+<li>10. 카테고리 — 램프 · 부저 (Lamp / Buzzer)</li>
+<li>11. 카테고리 — 기타 컨트롤 (Other Controls)</li>
+<li>12. 카테고리 — 배관 · 커넥터 · 케이블 (Conduit / Connector / Cable)</li>
+<li>13. 카테고리 — 진단기기 · 공구 · 재료 (Tools / Materials)</li>
+<li>14. 전선 원본 에셋 (.glb) 명명</li>
+<li>15. 주회로 22선 인스턴스 (Wire_&lt;Color&gt;_&lt;NN&gt;)</li>
+<li>16. 주회로 배선표 — 전체 22선 매핑</li>
+<li>17. 보조회로 39선 인스턴스</li>
+<li>18. 보조회로 배선표 — 전체 39선 매핑</li>
+<li>19. 전체 씬 트리 구조 (인스턴스 위계)</li>
+<li>20. 머티리얼 명명 (T3 자동 파생)</li>
+<li>21. 검증 체크리스트</li>
+<li>22. 변환 사유 요약 + 다음 단계</li>
+</ol>
+</section>
+<section class="slide"><div class="page-num">슬라이드 3 / 22</div>
+<h1>v6 명명 규칙 핵심 5가지</h1>
+<p class="subtitle">상세 규칙은 doc/MAKE_FORMAT.md 또는 doc/assets/MakeNamingConvention_v6.xlsx 참고.</p>
+<div class="principle"><b>1. 어디서 보는지에 따라 형식이 다름</b><br>OS 파일 탐색기(T1) / Make Editor(T2) / 자동 생성(T3) — 각 컨텍스트별 최적화.</div>
+<div class="principle"><b>2. Make Editor 인스턴스는 종류 약자 생략</b><br>트리 옆 아이콘이 종류를 시각화 → mdl_, img_ 같은 앞 약자 불필요. PascalCase 로 간결하게.</div>
+<div class="principle"><b>3. 구분 기호는 언더바 _ 하나만</b><br>이중 __ 와 하이픈 - 은 사용 금지. 모든 토큰 경계는 단일 _.</div>
+<div class="principle"><b>4. 약자는 정해진 단어 모음 안에서만</b><br>State (_Def/_Prs/_On/_Off/_Sel), Direction (_L/_R/_U/_D), Action (Rot/Scl/Mov/...). 5종 색상 (Br/Bk/Gr/GY/Yl).</div>
+<div class="principle"><b>5. 원본 파일에는 _v01 버전 표시 가능</b><br>T1 원본만 _v01 가능. T2 인스턴스에는 버전 표시 금지 — Make 가 인스턴스 단위 버전 관리 안 함.</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 4 / 22</div>
+<h1>3-Tier 모델 한눈에</h1>
+<table>
+<tr><th style="width:60px;">단계</th><th style="width:200px;">무엇</th><th style="width:280px;">어디서 보임</th><th>형식·예시</th></tr>
+<tr><td><span class="tag-T1">T1</span></td><td><b>원본 파일</b><br>모델러 납품</td><td>OS 파일 탐색기</td><td class="mono">MCCB_v01.glb, Wire_Br_v01.glb, PushBtn_Red_v01.glb</td></tr>
+<tr><td><span class="tag-T2">T2</span></td><td><b>Make Editor 인스턴스</b><br>씬에 배치된 객체</td><td>Make Editor 의 씬 트리 (타입 아이콘 옆)</td><td class="mono">MCCB_01, Wire_Br_001, PushBtn_Red_01</td></tr>
+<tr><td><span class="tag-T3">T3</span></td><td><b>자동 생성 객체</b><br>머티리얼·중간 mesh</td><td>머티리얼 패널 (간접)</td><td class="mono">mat_wire_brown, mat_mccb_body, tex_pushbtn_red_albedo</td></tr>
+<tr><td><span class="tag-ANIM">ANIM</span></td><td><b>애니메이션</b><br>animations[] 배열</td><td>애니메이션 패널</td><td class="mono">MC_Pop, Lamp_FI, Buzzer_Op (prefix 없음)</td></tr>
+</table>
+
+<h2>왜 단계마다 다른가?</h2>
+<div class="note">
+  <b>T1</b> 은 OS 파일 탐색기에 보이므로 확장자가 종류를 알려줍니다.<br>
+  <b>T2</b> 는 Make Editor 의 아이콘이 종류를 시각화하므로 이름에 종류 약자가 필요 없습니다.<br>
+  <b>T3</b> 는 사람이 직접 안 보고 AI·로그가 단독 노출하므로 종류 약자(mat_, tex_) 를 유지합니다.
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 5 / 22</div>
+<h1>전선 색상 약자 정의 (5종)</h1>
+<p class="subtitle">기획서에 명시된 5색 — 모든 전선은 색상별로 별도 모델(.glb) 로 분리. 인스턴스명에 색상 약자를 포함해 회로도와 직접 대조 가능.</p>
+<table>
+<tr><th>한글 표기 (회로도)</th><th>설명</th><th>영문</th><th>약자</th><th>원본 에셋 (T1)</th><th>인스턴스 (T2)</th></tr>
+<tr><td><span class="colorbox" style="background:#8B4513;"></span><b>갈</b></td><td>갈색</td><td class="mono">Brown</td><td class="mono"><b>Br</b></td><td class="mono">Wire_Br_v01.glb</td><td class="mono">Wire_Br_001 ~ Wire_Br_NNN</td></tr><tr><td><span class="colorbox" style="background:#1a1a1a;"></span><b>검</b></td><td>흑색</td><td class="mono">Black</td><td class="mono"><b>Bk</b></td><td class="mono">Wire_Bk_v01.glb</td><td class="mono">Wire_Bk_001 ~ Wire_Bk_NNN</td></tr><tr><td><span class="colorbox" style="background:#808080;"></span><b>회</b></td><td>회색</td><td class="mono">Gray</td><td class="mono"><b>Gr</b></td><td class="mono">Wire_Gr_v01.glb</td><td class="mono">Wire_Gr_001 ~ Wire_Gr_NNN</td></tr><tr><td><span class="colorbox" style="background:linear-gradient(45deg,#2e7d32 50%,#fbc02d 50%);"></span><b>녹-황</b></td><td>녹색-황색 (접지선)</td><td class="mono">GreenYellow</td><td class="mono"><b>GY</b></td><td class="mono">Wire_GY_v01.glb</td><td class="mono">Wire_GY_001 ~ Wire_GY_NNN</td></tr><tr><td><span class="colorbox" style="background:#fbc02d;"></span><b>황</b></td><td>황색</td><td class="mono">Yellow</td><td class="mono"><b>Yl</b></td><td class="mono">Wire_Yl_v01.glb</td><td class="mono">Wire_Yl_001 ~ Wire_Yl_NNN</td></tr>
+</table>
+
+<div class="note">
+  <b>녹-황(GY)</b> 은 접지선으로 일반적으로 1선 형태. 시각 구분을 위해 머티리얼(T3) 도 분리: <span class="mono">mat_wire_greenyellow</span>.<br>
+  보조회로(39선)는 기획서에 색상 표기가 없으므로 인스턴스명에 색상 약자를 생략하거나 시공 시 결정. 본 가이드는 <b>WireAux_NNN</b> 형식으로 표기.
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 6 / 22</div>
+<h1>카테고리 — 단자대 (소켓베이스 / Terminal Block)</h1>
+<table>
+<tr><th style="width:30%;">한글 명칭 (기획서)</th><th style="width:25%;">원본 에셋 <span class="tag-T1">T1</span></th><th style="width:25%;">인스턴스 <span class="tag-T2">T2</span></th><th>비고</th></tr>
+<tr><td>10핀 TB</td><td class="mono">TB10Pin_v01.glb</td><td class="mono">TB10_01, TB10_02</td><td>Terminal Block 10핀</td></tr><tr><td>8핀 소켓베이스</td><td class="mono">TB8Pin_v01.glb</td><td class="mono">TB8_01, TB8_02</td><td>회로도상 TB5 등으로 사용</td></tr><tr><td>12핀 소켓베이스</td><td class="mono">TB12Pin_v01.glb</td><td class="mono">TB12_01, TB12_02</td><td>회로도상 TB6 등으로 사용</td></tr>
+</table>
+<div class="note">
+  • 원본은 모두 <b>.glb</b> 확장자, PascalCase + <span class="mono">_v01</span>.<br>
+  • 인스턴스는 PascalCase, 종류 약자 없음, 동일 모델이 여러 곳에 쓰이면 <span class="mono">_01, _02, ...</span> 로 번호 부여.<br>
+  • 부모 노드(예: <span class="mono">ControlPanel</span>) 컨텍스트가 있으면 더 짧게 가능.
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 7 / 22</div>
+<h1>카테고리 — 동작검사용 기구 (Operation Test)</h1>
+<table>
+<tr><th style="width:30%;">한글 명칭 (기획서)</th><th style="width:25%;">원본 에셋 <span class="tag-T1">T1</span></th><th style="width:25%;">인스턴스 <span class="tag-T2">T2</span></th><th>비고</th></tr>
+<tr><td>릴레이 8Pin</td><td class="mono">Relay8Pin_v01.glb</td><td class="mono">Relay_01, Relay_02</td><td>보조계전기</td></tr><tr><td>MC (전자 접촉기)</td><td class="mono">MC_v01.glb</td><td class="mono">MC_01, MC_02</td><td>Magnetic Contactor</td></tr><tr><td>EOCR (전자식 과전류계전기)</td><td class="mono">EOCR_v01.glb</td><td class="mono">EOCR_01</td><td>Electronic Over Current Relay</td></tr><tr><td>퓨즈 홀더</td><td class="mono">FuseHolder_v01.glb</td><td class="mono">FuseHolder_01</td><td></td></tr><tr><td>타이머</td><td class="mono">Timer_v01.glb</td><td class="mono">Timer_01</td><td>회로도상 T</td></tr><tr><td>플리커</td><td class="mono">Flicker_v01.glb</td><td class="mono">Flicker_01</td><td>회로도상 FR</td></tr><tr><td>FLS (Floatless Level Switch)</td><td class="mono">FLS_v01.glb</td><td class="mono">FLS_01</td><td>수위 검출 스위치</td></tr>
+</table>
+<div class="note">
+  • 원본은 모두 <b>.glb</b> 확장자, PascalCase + <span class="mono">_v01</span>.<br>
+  • 인스턴스는 PascalCase, 종류 약자 없음, 동일 모델이 여러 곳에 쓰이면 <span class="mono">_01, _02, ...</span> 로 번호 부여.<br>
+  • 부모 노드(예: <span class="mono">ControlPanel</span>) 컨텍스트가 있으면 더 짧게 가능.
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 8 / 22</div>
+<h1>카테고리 — 제어판 기구 (Control Panel Devices)</h1>
+<table>
+<tr><th style="width:30%;">한글 명칭 (기획서)</th><th style="width:25%;">원본 에셋 <span class="tag-T1">T1</span></th><th style="width:25%;">인스턴스 <span class="tag-T2">T2</span></th><th>비고</th></tr>
+<tr><td>MCCB (배선용 차단기)</td><td class="mono">MCCB_v01.glb</td><td class="mono">MCCB_01</td><td>Molded Case Circuit Breaker</td></tr><tr><td>퓨즈</td><td class="mono">Fuse_v01.glb</td><td class="mono">Fuse_01, Fuse_02</td><td></td></tr>
+</table>
+<div class="note">
+  • 원본은 모두 <b>.glb</b> 확장자, PascalCase + <span class="mono">_v01</span>.<br>
+  • 인스턴스는 PascalCase, 종류 약자 없음, 동일 모델이 여러 곳에 쓰이면 <span class="mono">_01, _02, ...</span> 로 번호 부여.<br>
+  • 부모 노드(예: <span class="mono">ControlPanel</span>) 컨텍스트가 있으면 더 짧게 가능.
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 9 / 22</div>
+<h1>카테고리 — 스위치 / 버튼 (Switch / Button)</h1>
+<table>
+<tr><th style="width:30%;">한글 명칭 (기획서)</th><th style="width:25%;">원본 에셋 <span class="tag-T1">T1</span></th><th style="width:25%;">인스턴스 <span class="tag-T2">T2</span></th><th>비고</th></tr>
+<tr><td>푸쉬버튼 — 적색</td><td class="mono">PushBtn_Red_v01.glb</td><td class="mono">PushBtn_Red_01</td><td>Push Button</td></tr><tr><td>푸쉬버튼 — 녹색</td><td class="mono">PushBtn_Green_v01.glb</td><td class="mono">PushBtn_Green_01</td><td></td></tr><tr><td>푸쉬버튼 — 청색</td><td class="mono">PushBtn_Blue_v01.glb</td><td class="mono">PushBtn_Blue_01</td><td></td></tr><tr><td>셀렉터 스위치 (A타입)</td><td class="mono">SelectorSw_A_v01.glb</td><td class="mono">SelectorSw_A_01</td><td>Selector Switch A</td></tr><tr><td>셀렉터 스위치 (B타입)</td><td class="mono">SelectorSw_B_v01.glb</td><td class="mono">SelectorSw_B_01</td><td>Selector Switch B</td></tr>
+</table>
+<div class="note">
+  • 원본은 모두 <b>.glb</b> 확장자, PascalCase + <span class="mono">_v01</span>.<br>
+  • 인스턴스는 PascalCase, 종류 약자 없음, 동일 모델이 여러 곳에 쓰이면 <span class="mono">_01, _02, ...</span> 로 번호 부여.<br>
+  • 부모 노드(예: <span class="mono">ControlPanel</span>) 컨텍스트가 있으면 더 짧게 가능.
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 10 / 22</div>
+<h1>카테고리 — 램프 · 부저 (Lamp / Buzzer)</h1>
+<table>
+<tr><th style="width:30%;">한글 명칭 (기획서)</th><th style="width:25%;">원본 에셋 <span class="tag-T1">T1</span></th><th style="width:25%;">인스턴스 <span class="tag-T2">T2</span></th><th>비고</th></tr>
+<tr><td>파일럿램프 — 적색</td><td class="mono">PilotLamp_Red_v01.glb</td><td class="mono">PilotLamp_Red_01</td><td></td></tr><tr><td>파일럿램프 — 황색</td><td class="mono">PilotLamp_Yellow_v01.glb</td><td class="mono">PilotLamp_Yellow_01</td><td></td></tr><tr><td>파일럿램프 — 녹색</td><td class="mono">PilotLamp_Green_v01.glb</td><td class="mono">PilotLamp_Green_01</td><td></td></tr><tr><td>파일럿램프 — 백색</td><td class="mono">PilotLamp_White_v01.glb</td><td class="mono">PilotLamp_White_01</td><td></td></tr><tr><td>부저</td><td class="mono">Buzzer_v01.glb</td><td class="mono">Buzzer_01</td><td></td></tr>
+</table>
+<div class="note">
+  • 원본은 모두 <b>.glb</b> 확장자, PascalCase + <span class="mono">_v01</span>.<br>
+  • 인스턴스는 PascalCase, 종류 약자 없음, 동일 모델이 여러 곳에 쓰이면 <span class="mono">_01, _02, ...</span> 로 번호 부여.<br>
+  • 부모 노드(예: <span class="mono">ControlPanel</span>) 컨텍스트가 있으면 더 짧게 가능.
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 11 / 22</div>
+<h1>카테고리 — 기타 컨트롤 (Other Controls)</h1>
+<table>
+<tr><th style="width:30%;">한글 명칭 (기획서)</th><th style="width:25%;">원본 에셋 <span class="tag-T1">T1</span></th><th style="width:25%;">인스턴스 <span class="tag-T2">T2</span></th><th>비고</th></tr>
+<tr><td>전원 공급 스위치 (단상 2선식)</td><td class="mono">PowerSw_1P2W_v01.glb</td><td class="mono">PowerSw_01</td><td>Single Phase 2 Wire</td></tr><tr><td>2구 컨트롤박스</td><td class="mono">ControlBox_2Way_v01.glb</td><td class="mono">ControlBox_01</td><td></td></tr><tr><td>8각 박스</td><td class="mono">Box_Octagon_v01.glb</td><td class="mono">Box_Octagon_01</td><td>Junction Box</td></tr>
+</table>
+<div class="note">
+  • 원본은 모두 <b>.glb</b> 확장자, PascalCase + <span class="mono">_v01</span>.<br>
+  • 인스턴스는 PascalCase, 종류 약자 없음, 동일 모델이 여러 곳에 쓰이면 <span class="mono">_01, _02, ...</span> 로 번호 부여.<br>
+  • 부모 노드(예: <span class="mono">ControlPanel</span>) 컨텍스트가 있으면 더 짧게 가능.
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 12 / 22</div>
+<h1>카테고리 — 배관 · 커넥터 · 케이블 (Conduit / Connector / Cable)</h1>
+<table>
+<tr><th style="width:30%;">한글 명칭 (기획서)</th><th style="width:25%;">원본 에셋 <span class="tag-T1">T1</span></th><th style="width:25%;">인스턴스 <span class="tag-T2">T2</span></th><th>비고</th></tr>
+<tr><td>PE 전선관</td><td class="mono">PipePE_v01.glb</td><td class="mono">PipePE_01, PipePE_02</td><td>Polyethylene Conduit</td></tr><tr><td>플렉시블 전선관 (CD관)</td><td class="mono">PipeCD_v01.glb</td><td class="mono">PipeCD_01</td><td>Combine Duct (flexible)</td></tr><tr><td>CV 케이블</td><td class="mono">CableCV_v01.glb</td><td class="mono">CableCV_01</td><td>Cross-linked Vinyl</td></tr><tr><td>새들 (소)</td><td class="mono">Saddle_S_v01.glb</td><td class="mono">Saddle_S_01</td><td>2가지 사이즈</td></tr><tr><td>새들 (대)</td><td class="mono">Saddle_L_v01.glb</td><td class="mono">Saddle_L_01</td><td></td></tr><tr><td>커넥터 — CD관</td><td class="mono">Connector_CD_v01.glb</td><td class="mono">Connector_CD_01</td><td></td></tr><tr><td>커넥터 — PE관</td><td class="mono">Connector_PE_v01.glb</td><td class="mono">Connector_PE_01</td><td></td></tr><tr><td>케이블 그랜드</td><td class="mono">CableGland_v01.glb</td><td class="mono">CableGland_01</td><td></td></tr>
+</table>
+<div class="note">
+  • 원본은 모두 <b>.glb</b> 확장자, PascalCase + <span class="mono">_v01</span>.<br>
+  • 인스턴스는 PascalCase, 종류 약자 없음, 동일 모델이 여러 곳에 쓰이면 <span class="mono">_01, _02, ...</span> 로 번호 부여.<br>
+  • 부모 노드(예: <span class="mono">ControlPanel</span>) 컨텍스트가 있으면 더 짧게 가능.
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 13 / 22</div>
+<h1>카테고리 — 진단기기 · 공구 · 재료 (Tools / Materials)</h1>
+<table>
+<tr><th style="width:30%;">한글 명칭 (기획서)</th><th style="width:25%;">원본 에셋 <span class="tag-T1">T1</span></th><th style="width:25%;">인스턴스 <span class="tag-T2">T2</span></th><th>비고</th></tr>
+<tr><td>벨 테스터기</td><td class="mono">BellTester_v01.glb</td><td class="mono">BellTester_01</td><td>Continuity tester</td></tr><tr><td>드릴</td><td class="mono">Drill_v01.glb</td><td class="mono">Drill_01</td><td></td></tr><tr><td>스트리퍼</td><td class="mono">Stripper_v01.glb</td><td class="mono">Stripper_01</td><td>Wire stripper</td></tr><tr><td>파이프 커터</td><td class="mono">PipeCutter_v01.glb</td><td class="mono">PipeCutter_01</td><td></td></tr><tr><td>나사못</td><td class="mono">Screw_v01.glb</td><td class="mono">Screw_01, Screw_02</td><td></td></tr><tr><td>자</td><td class="mono">Ruler_v01.glb</td><td class="mono">Ruler_01</td><td>60×10cm</td></tr><tr><td>분필</td><td class="mono">Chalk_v01.glb</td><td class="mono">Chalk_01</td><td></td></tr><tr><td>마스킹테이프</td><td class="mono">MaskingTape_v01.glb</td><td class="mono">MaskingTape_01</td><td></td></tr>
+</table>
+<div class="note">
+  • 원본은 모두 <b>.glb</b> 확장자, PascalCase + <span class="mono">_v01</span>.<br>
+  • 인스턴스는 PascalCase, 종류 약자 없음, 동일 모델이 여러 곳에 쓰이면 <span class="mono">_01, _02, ...</span> 로 번호 부여.<br>
+  • 부모 노드(예: <span class="mono">ControlPanel</span>) 컨텍스트가 있으면 더 짧게 가능.
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 14 / 22</div>
+<h1>전선 원본 에셋 (.glb) — 5종</h1>
+<p class="subtitle">색상별로 별도 모델 — 머티리얼 색상이 GLB 안에 포함되어 임포트 시 즉시 가시화.</p>
+<table>
+<tr><th>원본 에셋 <span class="tag-T1">T1</span></th><th>인스턴스 패턴 <span class="tag-T2">T2</span></th><th>설명</th></tr>
+<tr><td class="mono">Wire_Br_v01.glb</td><td class="mono">Wire_Br_*</td><td>갈색 전선 (단심)</td></tr><tr><td class="mono">Wire_Bk_v01.glb</td><td class="mono">Wire_Bk_*</td><td>흑색 전선 (단심)</td></tr><tr><td class="mono">Wire_Gr_v01.glb</td><td class="mono">Wire_Gr_*</td><td>회색 전선 (단심)</td></tr><tr><td class="mono">Wire_GY_v01.glb</td><td class="mono">Wire_GY_*</td><td>녹-황 전선 (접지)</td></tr><tr><td class="mono">Wire_Yl_v01.glb</td><td class="mono">Wire_Yl_*</td><td>황색 전선 (단심)</td></tr>
+</table>
+
+<h2>대안 설계: 단일 전선 모델 + 머티리얼 교체</h2>
+<table>
+<tr><th>안</th><th>장점</th><th>단점</th></tr>
+<tr><td><b>색상별 분리</b> (권장)</td><td>임포트 즉시 가시화, GLB 가 자체 완결</td><td>5개 파일 관리</td></tr>
+<tr><td>단일 + 머티리얼 교체</td><td>파일 1개, 길이·구부림 공통</td><td>씬에서 머티리얼 명시 필요, AI 가 색상 식별 어려움</td></tr>
+</table>
+<div class="note">본 가이드는 <b>색상별 분리</b> 채택. AI 가 인스턴스명(<span class="mono">Wire_Br_005</span>) 만 봐도 색상 파악 가능.</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 15 / 22</div>
+<h1>주회로 22선 인스턴스 명명 규칙</h1>
+<h2>형식</h2>
+<div class="tree">WireM_&lt;NN&gt;_&lt;Color&gt;
+
+WireM   주회로(Main) 식별
+NN      회로도 라인 번호 (01~22, 두 자리 고정)
+Color   색상 약자 (Br/Bk/Gr/GY/Yl)</div>
+
+<h2>예시</h2>
+<table>
+<tr><th style="width:60px;">No</th><th>이름</th><th>의미</th></tr>
+<tr><td>1</td><td class="mono">WireM_01_GY</td><td>주회로 1번선 — 녹-황 (TB5 단자대 10 → TB6 단자대 10)</td></tr>
+<tr><td>3</td><td class="mono">WireM_03_Br</td><td>주회로 3번선 — 갈색 (TB5 단자대 7 → MCCB 갈 input)</td></tr>
+<tr><td>9</td><td class="mono">WireM_09_Br</td><td>주회로 9번선 — 갈색 (EOCR 1 → 퓨즈홀더 갈 input)</td></tr>
+<tr><td>17</td><td class="mono">WireM_17_Br</td><td>주회로 17번선 — 갈색 (MC1 7 → TB6 단자대 15)</td></tr>
+</table>
+
+<div class="note">
+  <b>설계 결정</b>: 출발·도착 정보를 인스턴스명에 담지 않음 — 너무 길어짐 (<span class="mono">Wire_TB5_10_TB6_10_GY</span> 같은 형식 회피).<br>
+  대신 <b>씬 트리 구조</b>로 표현: <span class="mono">MainCircuit/WireM_01_GY</span>. 출발·도착은 VNT 컴포넌트의 <span class="mono">FromNodeId</span>/<span class="mono">ToNodeId</span> 필드로.
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 16 / 22</div>
+<h1>주회로 배선표 — 전체 22선 (Line 22)</h1>
+<table style="font-size:12px;">
+<tr><th style="width:50px;">No</th><th style="width:180px;">인스턴스 이름 <span class="tag-T2">T2</span></th><th>출발</th><th>도착</th></tr>
+<tr><td>1</td><td class="mono">WireM_01_GY</td><td>TB5 단자대 10</td><td>TB6 단자대 10</td></tr><tr><td>2</td><td class="mono">WireM_02_GY</td><td>TB6 단자대 10</td><td>TB6 단자대 18</td></tr><tr><td>3</td><td class="mono">WireM_03_Br</td><td>TB5 단자대 7</td><td>MCCB 갈 input</td></tr><tr><td>4</td><td class="mono">WireM_04_Bk</td><td>TB5 단자대 8</td><td>MCCB 검 input</td></tr><tr><td>5</td><td class="mono">WireM_05_Gr</td><td>TB5 단자대 9</td><td>MCCB 회 input</td></tr><tr><td>6</td><td class="mono">WireM_06_Br</td><td>MCCB 갈 output</td><td>EOCR 1</td></tr><tr><td>7</td><td class="mono">WireM_07_Bk</td><td>MCCB 검 output</td><td>EOCR 2</td></tr><tr><td>8</td><td class="mono">WireM_08_Gr</td><td>MCCB 회 output</td><td>EOCR 3</td></tr><tr><td>9</td><td class="mono">WireM_09_Br</td><td>EOCR 1</td><td>퓨즈홀더 갈 input</td></tr><tr><td>10</td><td class="mono">WireM_10_Gr</td><td>EOCR 3</td><td>퓨즈홀더 회 input</td></tr><tr><td>11</td><td class="mono">WireM_11_Br</td><td>EOCR 7</td><td>MC1 1</td></tr><tr><td>12</td><td class="mono">WireM_12_Bk</td><td>EOCR 8</td><td>MC1 2</td></tr><tr><td>13</td><td class="mono">WireM_13_Gr</td><td>EOCR 9</td><td>MC1 3</td></tr><tr><td>14</td><td class="mono">WireM_14_Br</td><td>MC1 1</td><td>MC2 1</td></tr><tr><td>15</td><td class="mono">WireM_15_Bk</td><td>MC1 2</td><td>MC2 2</td></tr><tr><td>16</td><td class="mono">WireM_16_Gr</td><td>MC1 3</td><td>MC2 3</td></tr><tr><td>17</td><td class="mono">WireM_17_Br</td><td>MC1 7</td><td>TB6 단자대 15</td></tr><tr><td>18</td><td class="mono">WireM_18_Bk</td><td>MC1 8</td><td>TB6 단자대 16</td></tr><tr><td>19</td><td class="mono">WireM_19_Gr</td><td>MC1 9</td><td>TB6 단자대 17</td></tr><tr><td>20</td><td class="mono">WireM_20_Br</td><td>MC2 7</td><td>TB6 단자대 7</td></tr><tr><td>21</td><td class="mono">WireM_21_Bk</td><td>MC2 8</td><td>TB6 단자대 8</td></tr><tr><td>22</td><td class="mono">WireM_22_Gr</td><td>MC2 9</td><td>TB6 단자대 9</td></tr>
+</table>
+</section>
+<section class="slide"><div class="page-num">슬라이드 17 / 22</div>
+<h1>보조회로 39선 인스턴스 명명 규칙</h1>
+<h2>형식</h2>
+<div class="tree">WireA_&lt;NN&gt;
+
+WireA   보조회로(Auxiliary) 식별
+NN      회로도 라인 번호 (01~39, 두 자리 고정)</div>
+
+<h2>색상 약자가 없는 이유</h2>
+<div class="note">
+  기획서 슬라이드 13-14 의 보조회로 배선표에는 <b>색상 칼럼이 없음</b>.<br>
+  실제 시공에서 보조회로는 보통 <b>황색 단심선</b>으로 통일하지만, 설계상 색상이 정해지지 않은 경우는 인스턴스명에 색상 약자 생략.<br>
+  설계 단계에서 색상이 확정되면 <span class="mono">WireA_01_Yl</span> 형식으로 확장 가능.
+</div>
+
+<h2>예시</h2>
+<table>
+<tr><th style="width:60px;">No</th><th>이름</th><th>의미</th></tr>
+<tr><td>1</td><td class="mono">WireA_01</td><td>보조회로 1번선 (퓨즈홀더 갈 → EOCR 12)</td></tr>
+<tr><td>14</td><td class="mono">WireA_14</td><td>보조회로 14번선 (TB6 단자대 4 → X 3)</td></tr>
+<tr><td>21</td><td class="mono">WireA_21</td><td>보조회로 21번선 (FR 7 → FR 8)</td></tr>
+<tr><td>36</td><td class="mono">WireA_36</td><td>보조회로 36번선 (EOCR 6 → 퓨즈홀더 회)</td></tr>
+</table>
+</section>
+<section class="slide"><div class="page-num">슬라이드 18 / 22</div>
+<h1>보조회로 배선표 — 전체 39선 (Line 39)</h1>
+<div class="cols2">
+<table style="font-size:11px;">
+<tr><th>No</th><th>이름</th><th>출발</th><th>도착</th></tr>
+<tr><td>1</td><td class="mono">WireA_01</td><td>퓨즈홀더 갈</td><td>EOCR 12</td></tr><tr><td>2</td><td class="mono">WireA_02</td><td>EOCR 12</td><td>EOCR 10</td></tr><tr><td>3</td><td class="mono">WireA_03</td><td>EOCR 4</td><td>TB5 단자대 16</td></tr><tr><td>4</td><td class="mono">WireA_04</td><td>TB5 단자대 16</td><td>TB5 단자대 18</td></tr><tr><td>5</td><td class="mono">WireA_05</td><td>TB5 단자대 18</td><td>X 8</td></tr><tr><td>6</td><td class="mono">WireA_06</td><td>X 8</td><td>MC1 10</td></tr><tr><td>7</td><td class="mono">WireA_07</td><td>MC1 10</td><td>MC2 10</td></tr><tr><td>8</td><td class="mono">WireA_08</td><td>EOCR 5</td><td>TB5 단자대 2</td></tr><tr><td>9</td><td class="mono">WireA_09</td><td>TB5 단자대 2</td><td>TB5 단자대 4</td></tr><tr><td>10</td><td class="mono">WireA_10</td><td>TB5 단자대 15</td><td>FLS 4</td></tr><tr><td>11</td><td class="mono">WireA_11</td><td>FLS 4</td><td>FLS 6</td></tr><tr><td>12</td><td class="mono">WireA_12</td><td>TB5 단자대 17</td><td>TB6 단자대 2</td></tr><tr><td>13</td><td class="mono">WireA_13</td><td>TB6 단자대 1</td><td>TB6 단자대 4</td></tr><tr><td>14</td><td class="mono">WireA_14</td><td>TB6 단자대 4</td><td>X 3</td></tr><tr><td>15</td><td class="mono">WireA_15</td><td>TB6 단자대 3</td><td>T 7</td></tr><tr><td>16</td><td class="mono">WireA_16</td><td>T 7</td><td>FLS 3</td></tr><tr><td>17</td><td class="mono">WireA_17</td><td>FLS 3</td><td>X 1</td></tr><tr><td>18</td><td class="mono">WireA_18</td><td>X 1</td><td>X 7</td></tr><tr><td>19</td><td class="mono">WireA_19</td><td>X 6</td><td>T 8</td></tr><tr><td>20</td><td class="mono">WireA_20</td><td>T 6</td><td>FR 7</td></tr>
+</table>
+<table style="font-size:11px;">
+<tr><th>No</th><th>이름</th><th>출발</th><th>도착</th></tr>
+<tr><td>21</td><td class="mono">WireA_21</td><td>FR 7</td><td>FR 8</td></tr><tr><td>22</td><td class="mono">WireA_22</td><td>FR 5</td><td>MC1 12</td></tr><tr><td>23</td><td class="mono">WireA_23</td><td>FR 6</td><td>MC2 12</td></tr><tr><td>24</td><td class="mono">WireA_24</td><td>MC1 4</td><td>TB5 단자대 14</td></tr><tr><td>25</td><td class="mono">WireA_25</td><td>MC2 4</td><td>TB5 단자대 12</td></tr><tr><td>26</td><td class="mono">WireA_26</td><td>TB5 단자대 11</td><td>TB5 단자대 13</td></tr><tr><td>27</td><td class="mono">WireA_27</td><td>TB5 단자대 13</td><td>MC2 6</td></tr><tr><td>28</td><td class="mono">WireA_28</td><td>MC2 6</td><td>MC1 6</td></tr><tr><td>29</td><td class="mono">WireA_29</td><td>MC1 6</td><td>FR 2</td></tr><tr><td>30</td><td class="mono">WireA_30</td><td>FR 2</td><td>T 2</td></tr><tr><td>31</td><td class="mono">WireA_31</td><td>T 2</td><td>X 2</td></tr><tr><td>32</td><td class="mono">WireA_32</td><td>X 2</td><td>FLS 5</td></tr><tr><td>33</td><td class="mono">WireA_33</td><td>FLS 5</td><td>TB5 단자대 3</td></tr><tr><td>34</td><td class="mono">WireA_34</td><td>TB5 단자대 3</td><td>TB5 단자대 1</td></tr><tr><td>35</td><td class="mono">WireA_35</td><td>TB5 단자대 1</td><td>EOCR 6</td></tr><tr><td>36</td><td class="mono">WireA_36</td><td>EOCR 6</td><td>퓨즈홀더 회</td></tr><tr><td>37</td><td class="mono">WireA_37</td><td>FLS 7</td><td>TB6 단자대 11</td></tr><tr><td>38</td><td class="mono">WireA_38</td><td>FLS 8</td><td>TB6 단자대 12</td></tr><tr><td>39</td><td class="mono">WireA_39</td><td>FLS 1</td><td>TB6 단자대 13</td></tr>
+</table>
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 19 / 22</div>
+<h1>전체 씬 트리 구조 (인스턴스 위계)</h1>
+<p class="subtitle">부모 노드가 카테고리를 표현 — 자식 인스턴스명은 짧게 유지. AI 가 트리 컨텍스트로 의미 합성 가능.</p>
+<div class="tree">SceneRoot
+├── ControlPanel                          ← 제어판 컨테이너 (Stage 1·2)
+│   ├── MCCB_01
+│   ├── EOCR_01
+│   ├── MC_01                             ← MC1 = 첫 번째 전자 접촉기
+│   ├── MC_02                             ← MC2 = 두 번째
+│   ├── FuseHolder_01
+│   ├── Fuse_01, Fuse_02
+│   ├── TB10_01                           ← 10핀 TB
+│   ├── TB8_01                            ← 회로도상 TB5
+│   ├── TB12_01                           ← 회로도상 TB6
+│   ├── Timer_01                          ← 회로도 T
+│   ├── Flicker_01                        ← 회로도 FR
+│   ├── FLS_01
+│   └── Relay_01 ~ Relay_NN
+│
+├── ControlBox                            ← 2구 컨트롤박스 + 푸쉬버튼·셀렉터·램프
+│   ├── ControlBox_01
+│   ├── PushBtn_Red_01, PushBtn_Green_01, PushBtn_Blue_01
+│   ├── SelectorSw_A_01, SelectorSw_B_01
+│   ├── PilotLamp_Red_01, PilotLamp_Green_01, PilotLamp_Yellow_01, PilotLamp_White_01
+│   └── Buzzer_01
+│
+├── Conduit                               ← 배관 시스템 (Stage 2)
+│   ├── PipePE_01 ~ PipePE_NN
+│   ├── PipeCD_01 ~ PipeCD_NN
+│   ├── Saddle_S_01 ~ , Saddle_L_01 ~
+│   ├── Connector_PE_01 ~ , Connector_CD_01 ~
+│   └── CableGland_01 ~
+│
+├── MainCircuit                           ← 주회로 22선 (Stage 3)
+│   ├── WireM_01_GY                       ← TB5_10 → TB6_10  (녹-황 접지)
+│   ├── WireM_02_GY                       ← TB6_10 → TB6_18  (녹-황 접지)
+│   ├── WireM_03_Br                       ← TB5_7 → MCCB_In_Br
+│   └── ... WireM_22_Gr
+│
+├── AuxCircuit                            ← 보조회로 39선
+│   ├── WireA_01                          ← 퓨즈홀더_갈 → EOCR_12
+│   └── ... WireA_39
+│
+├── Tools                                 ← 인벤토리 도구
+│   ├── BellTester_01
+│   ├── Drill_01, Stripper_01, PipeCutter_01
+│   └── Ruler_01, Chalk_01, MaskingTape_01, Screw_01...
+│
+└── Materials                             ← (선택) 8각 박스 등 부재
+    ├── Box_Octagon_01
+    └── CableCV_01</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 20 / 22</div>
+<h1>머티리얼 명명 (T3 — 자동 파생)</h1>
+<p class="subtitle">사용자가 직접 명명하지 않음 — 시스템이 사용 노드 분석으로 자동 생성. lower_snake_case + <span class="mono">mat_</span> 약자 유지.</p>
+<table>
+<tr><th>원본 에셋 (T1)</th><th>머티리얼 이름 <span class="tag-T3">T3</span></th><th>설명</th></tr>
+<tr><td class="mono">Wire_Br_v01.glb</td><td class="mono">mat_wire_brown</td><td>갈색 전선 머티리얼 (단색 또는 albedo 텍스처)</td></tr><tr><td class="mono">Wire_Bk_v01.glb</td><td class="mono">mat_wire_black</td><td>흑색 전선</td></tr><tr><td class="mono">Wire_Gr_v01.glb</td><td class="mono">mat_wire_gray</td><td>회색 전선</td></tr><tr><td class="mono">Wire_GY_v01.glb</td><td class="mono">mat_wire_greenyellow</td><td>녹-황 접지선 (이중색)</td></tr><tr><td class="mono">Wire_Yl_v01.glb</td><td class="mono">mat_wire_yellow</td><td>황색 전선</td></tr><tr><td class="mono">MCCB_v01.glb</td><td class="mono">mat_mccb_body</td><td>MCCB 본체 (검정 플라스틱)</td></tr><tr><td class="mono">MCCB_v01.glb</td><td class="mono">mat_mccb_lever</td><td>MCCB 레버 (적색)</td></tr><tr><td class="mono">PushBtn_Red_v01.glb</td><td class="mono">mat_pushbtn_red</td><td>푸쉬버튼 적색 머티리얼</td></tr><tr><td class="mono">PilotLamp_Yellow_v01.glb</td><td class="mono">mat_pilotlamp_yellow</td><td>황색 램프 (반투명 + 발광)</td></tr>
+</table>
+
+<h3>채널별 텍스처 (필요 시)</h3>
+<div class="tree">mat_mccb_body
+├── tex_mccb_body_albedo       ← 기본 색상
+├── tex_mccb_body_normal       ← 표면 굴곡
+├── tex_mccb_body_roughness    ← 거칠기
+└── tex_mccb_body_metallic     ← 금속성</div>
+
+<div class="note">
+  사용자는 머티리얼 패널에서만 가끔 확인 — Make Editor 씬 트리에는 직접 노출되지 않음.<br>
+  AI·로그가 단독 노출하므로 <span class="mono">mat_</span> 약자 유지가 가독성·검색 효율에 유리.
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 21 / 22</div>
+<h1>검증 체크리스트</h1>
+<div class="cols2">
+  <div>
+    <h2>T1 — 원본 파일</h2>
+    <ul class='checklist'><li>모든 원본 .glb 가 PascalCase + _v&lt;NN&gt; 형식</li><li>전선은 색상별 5개 파일 (Wire_Br/Bk/Gr/GY/Yl_v01.glb)</li><li>기구는 카테고리별 슬라이드의 원본 에셋명 표 기준</li><li>한글 파일명 0건</li><li>공백·하이픈 0건</li></ul>
+    <h2>T2 — Make Editor 인스턴스</h2>
+    <ul class='checklist'><li>Make Editor 인스턴스에 종류 약자 (mdl_/img_) 0건</li><li>주회로 22선이 WireM_NN_&lt;Color&gt; 패턴</li><li>보조회로 39선이 WireA_NN 패턴</li><li>기구 인스턴스는 &lt;원본명&gt;_01, _02 ... 순차 번호</li><li>부모 노드(ControlPanel/MainCircuit/AuxCircuit/...) 가 카테고리 표현</li><li>이름 끝에 확장자 (.glb 등) 박제 0건</li></ul>
+  </div>
+  <div>
+    <h2>T3 — 자동 생성 (머티리얼)</h2>
+    <ul class='checklist'><li>머티리얼 이름이 mat_&lt;asset&gt;_&lt;part&gt; 패턴</li><li>(Instance) 사슬 0건</li><li>텍스처 채널 약자 (_albedo/_normal/...) 명시</li></ul>
+    <h2>애니메이션</h2>
+    <ul class='checklist'><li>버튼 누를 때 효과 애니메이션이 &lt;Target&gt;_&lt;Act&gt;[_&lt;Dir&gt;] 패턴</li><li>예: PushBtn_Red_Pop (눌릴 때 바운스), PilotLamp_Yellow_FI (켜질 때 페이드인)</li><li>Unity &#x27;new Clip&#x27; 패턴 0건</li></ul>
+    <div class="note">
+      체크리스트 상세는 <span class="mono">doc/assets/MakeNamingConvention_v6.xlsx</span> 의 Checklist 시트 참고.
+    </div>
+  </div>
+</div>
+</section>
+<section class="slide"><div class="page-num">슬라이드 22 / 22</div>
+<h1>변환 사유 요약 + 다음 단계</h1>
+
+<h2>왜 이 명명 규칙이 합리적인가</h2>
+<table>
+<tr><th>고려 사항</th><th>적용된 결정</th></tr>
+<tr><td>회로도와 직접 대조 필요</td><td>주회로 인스턴스에 색상 약자 포함 → <span class="mono">WireM_03_Br</span> 만 봐도 회로도 라인 3번 갈색임을 식별</td></tr>
+<tr><td>513 노드 규모 대비 가독성</td><td>부모 노드로 카테고리 그룹핑 (<span class="mono">MainCircuit/...</span>) → 자식은 짧게 (<span class="mono">WireM_01_GY</span>)</td></tr>
+<tr><td>모델러·기획자 협업</td><td>T1 원본명 = PascalCase + 영문 (모델러 도구 친화). T2 인스턴스 = 동일 PascalCase (학습 비용 0)</td></tr>
+<tr><td>AI 보조 편집</td><td>씬 트리 + 인스턴스명 조합으로 출발·도착 의미 완결. 추가 VNT 컴포넌트 필드로 정밀 결선 정보</td></tr>
+<tr><td>11개 Contents 페이지 (Stage1~3)</td><td>각 페이지에서 동일 모델 재사용 — <span class="mono">_01, _02, _03</span> 순차 번호로 인스턴스 구별</td></tr>
+</table>
+
+<h2>다음 단계 권장</h2>
+<ol>
+<li><b>모델러 발주</b>: 카테고리별 슬라이드의 T1 원본명 표 기준으로 .glb 작업 의뢰</li>
+<li><b>전선 5종 우선</b>: <span class="mono">Wire_Br/Bk/Gr/GY/Yl_v01.glb</span> 부터 제작 — 주회로·보조회로 양쪽 공통</li>
+<li><b>GLOSSARY 등록</b>: 한국어 기획서 용어 → 영문 슬러그 매핑을 <span class="mono">doc/GLOSSARY.md</span> 에 추가 (예: 단자대 → TB, 차단기 → MCCB)</li>
+<li><b>VNT 컴포넌트 설계</b>: 전선 인스턴스에 <span class="mono">FromNodeId/ToNodeId</span> 필드 정의 — 결선 정보를 이름 외부에 보존</li>
+<li><b>임포트 검증 스크립트</b>: <span class="mono">scripts/validate-make-names.py</span> 작성 — 본 문서의 체크리스트 자동 검사</li>
+</ol>
+
+<div class="note">
+  본 가이드는 기획서 v1.1 기준. PPTX 갱신 시 <span class="mono">scripts/build_wiring_naming_html.py</span> 의 데이터 표 갱신 후 재생성.
+</div>
+</section>
+</div>
+<div class="nav">← → 또는 PgUp/PgDn · <span id="pgnum">1 / 22</span></div>
+<script>
+const slides = document.querySelectorAll('.slide');
+let cur = 0;
+function go(i) {
+  cur = Math.max(0, Math.min(slides.length - 1, i));
+  slides[cur].scrollIntoView({behavior: 'smooth', block: 'start'});
+  document.getElementById('pgnum').textContent = (cur + 1) + ' / ' + slides.length;
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); go(cur + 1); }
+  if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(cur - 1); }
+  if (e.key === 'Home') { e.preventDefault(); go(0); }
+  if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
+});
+window.addEventListener('scroll', () => {
+  for (let i = 0; i < slides.length; i++) {
+    const r = slides[i].getBoundingClientRect();
+    if (r.top >= -100 && r.top < window.innerHeight / 2) { cur = i; break; }
+  }
+  document.getElementById('pgnum').textContent = (cur + 1) + ' / ' + slides.length;
+});
+</script>
+</body>
+</html>
