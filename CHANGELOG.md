@@ -16,6 +16,30 @@
 
 ### Security
 
+## [0.1.3] - 2026-05-12
+
+### Changed
+- `doc/MAKE_FORMAT.md` 네이밍 규칙 v3 → v4 보강 — **Tier 책임 분리**
+  - 핵심 인사이트 2개 통합:
+    1. 사용자 지적: "사용자가 편집할 수 없는 머티리얼/노드/애니메이션 등에 대한 네이밍은 불필요"
+    2. 추가 제약: "사용자도 보지만 에이전트도 읽고 파악할 줄 알아야 함"
+  - 합의: prefix 정책 (v3) 유지 + **이름 입력 책임을 Tier 로 분리**
+  - **Tier Responsibility Matrix** 신설 — Tier A/B/C/System reserved 4 단계
+    - Tier A (user-uploaded): 사용자 슬러그 + 툴 prefix 자동 부착
+    - Tier B (user-composed): 사용자 의미 + 툴 prefix 자동 부착
+    - Tier C (system-derived): **시스템 자동 mirror, 사람 입력 없음**
+    - System reserved: VNT 예약어 (`SceneRoot` 등)
+  - **System Auto-Derivation** 섹션 신설 — Tier C 자동 파생 알고리즘
+    - 일반 mirror: source name 의 prefix 만 교체 (`img_gnb__active` → `mat_gnb__active`)
+    - 애니메이션 특수: 채널 타겟 분석으로 primary target 추출
+    - 1:N 케이스: 채널/상태 suffix 로 분기
+  - 사용자 명명 작업량: v3 ~660 항목 → v4 ~192 항목 (약 70% 감소)
+  - 검증 체크리스트에 Tier 분리 항목 5개 추가
+
+### Added
+- `doc/MAKE_FORMAT.md` 의 ``Tier Responsibility Matrix`` + ``System Auto-Derivation`` 섹션
+- `doc/plans/HANDOFF.md` — 다음 세션 이어받기용 컨텍스트·열린 질문 인덱스
+
 ## [0.1.2] - 2026-05-12
 
 ### Changed
