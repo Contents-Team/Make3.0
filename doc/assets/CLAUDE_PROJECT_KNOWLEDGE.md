@@ -5,9 +5,9 @@
 | 항목 | 값 |
 |---|---|
 | Repo | https://github.com/Contents-Team/Make3.0.git |
-| Commit | `eac3951` |
-| Commit date | 2026-06-25T19:56:00+09:00 |
-| Bundle built | 2026-06-25T19:56:43+09:00 |
+| Commit | `897012e` |
+| Commit date | 2026-06-25T19:56:55+09:00 |
+| Bundle built | 2026-06-25T20:57:22+09:00 |
 | Included docs | 4 |
 
 ## 포함 문서
@@ -53,12 +53,12 @@ TODO: 3-5줄 안에 동작 확인 가능한 명령
 **Q. TODO**
 A. TODO
 
-**Q. 다른 솔루션과의 차이는?**
-A. `doc/PRODUCT.md` 의 `Differentiation` 섹션 참조.
+**Q. 에셋 네이밍 규칙은?**
+A. `doc/MAKE_FORMAT.md` 의 `Naming Rules` (현재 v7) 참조. 용어 매핑은 `doc/GLOSSARY.md`.
 
 ## Development
 
-로컬 개발 환경은 [doc/DEVELOPING.md](./doc/DEVELOPING.md) 참조.
+핵심 문서는 [doc/MAKE_FORMAT.md](./doc/MAKE_FORMAT.md) (포맷·네이밍 규칙) 와 [CHANGELOG.md](./CHANGELOG.md) 참조.
 
 ## Roadmap
 
