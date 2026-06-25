@@ -16,6 +16,36 @@
 
 ### Security
 
+## [0.1.6] - 2026-06-25
+
+### Changed
+- `doc/MAKE_FORMAT.md` 네이밍 규칙 v6 → v7 개정 — **3-Tier → 2-Tier 모델로 축소**
+  - **T3 (System-Derived) 단계 삭제** — 머티리얼·중간 mesh·texture object 등 시스템 자동 생성 객체는 사용자 명명 대상에서 제외(시스템 자동 처리). 명명 모델은 **T1 (원본 파일) / T2 (Make Editor 인스턴스)** 두 단계로 축소
+  - **약자 폐지 → 풀어쓰기**:
+    - 상태: `_Def`/`_Prs`/`_On`/`_Off`/`_Sel` → `Default`(생략)/`Pressed`/`On`/`Off`/`Disabled`
+    - 방향: `_L`/`_R`/`_U`/`_D`/`_CW`/`_CCW` → `Left`/`Right`/`Up`/`Down`/`Clockwise`/`AntiClockwise`
+  - **도메인 약자 PascalCase 통일**: `GNB`/`BGM`/`SFX` → `Gnb`/`Bgm`/`Sfx` (3글자+ PascalCase, 2글자 `UI`/`TTS` 는 대문자 유지)
+  - **영상 카테고리 5 → 2종**: `CUT`/`TUT`/`LOOP`/`INTRO`/`OUTRO` → `Info` (정보 전달 통합) / `Bgv` (배경 영상)
+  - **애니메이션 효과 기반 재정의**: `<Target>_<Act>` 약자 패턴 → 효과 이름(`Bounce`/`ZoomIn`/`ZoomOut`/`Pop`/`Pulse`/`Spin`/`Slide`/`Flip`/`Fade`/`Highlight`). 대상 오브젝트명 제외, 속성 4종(`Position`/`Rotation`/`Scale`/`Color` — 3D 모델은 `Color` 불가)
+  - **T2 토큰 구분 통일**: Family 약자 뒤에도 단일 `_` (`Gnb_01`, `Btn_Start`). 메인 내비 `Gnb`/`Snb`/`Bnb` 는 번호+상태로 구분(`Gnb_01_On`)
+  - **숫자 경로 최대 3자리** (`Contents_3_1_1`), 이중 밑줄 `__` 제거
+  - 상태 `Selected` 제거(`On` 과 기능 동일), `Disabled` 를 `Off` 와 구분해 부활
+
+### Added
+- `doc/MAKE_FORMAT.md` 의 `씬 하이어아키 (Scene Hierarchy)` 섹션 — 디바이스별(HMD = World 전용 / PC·Tablet = Models 만 World, 나머지 Screen) 빈 오브젝트 컨테이너 구조 표준
+- `doc/MAKE_FORMAT.md` 의 `C# 컨벤션 대조 (Microsoft .NET)` 섹션 + 개선 제안
+- 애니메이션 포함 3D 모델 접두사 `Ani_` (`Ani_Cupcake.fbx`)
+- 음성 변환(TTS) 적용 텍스트 접두사 `TTS_`
+- `Modal` 패밀리 (모달·팝업 창)
+- `doc/assets/MakeNamingConvention_v7.xlsx` — 비개발자용 v7 네이밍 가이드 워크북 (Overview/T1/T2/Hierarchy/Animation/Vocab/Examples/Checklist/Anti-Patterns 9시트)
+
+### Removed
+- **3D 텍스처 명명 규칙 삭제** — PNG 는 UI 스프라이트 전용. Role 토큰(`ALB`/`NRM`/`RGH`/`MET`/`EMI`/`MSK`/`AO`)·텍스처 채널 suffix·`tex_` 일체 폐지
+- `doc/assets/MakeNamingConvention_v6.xlsx` (v7 로 대체, git 히스토리에 보존)
+
+### Fixed
+- 오타 정정 (`Strat` → `Start`), 안티패턴 예시를 단일 이슈로 명확화
+
 ## [0.1.5] - 2026-05-13
 
 ### Changed
