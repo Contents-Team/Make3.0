@@ -23,7 +23,7 @@ TODO: 1-2문단으로 핵심 가치 설명. 어떤 도메인의 어떤 문제를
 TODO: 3-5줄 안에 동작 확인 가능한 명령
 \\\
 
-자세한 셋업은 [docs/start/installation.md](./docs/start/installation.md) 참조.
+이 레포는 `.make` 포맷·에셋 네이밍 규칙 문서를 다룹니다. 핵심은 [doc/MAKE_FORMAT.md](./doc/MAKE_FORMAT.md) 참조.
 
 ## FAQ
 

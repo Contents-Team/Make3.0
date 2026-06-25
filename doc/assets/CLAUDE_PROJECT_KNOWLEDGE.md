@@ -5,9 +5,9 @@
 | 항목 | 값 |
 |---|---|
 | Repo | https://github.com/Contents-Team/Make3.0.git |
-| Commit | `897012e` |
-| Commit date | 2026-06-25T19:56:55+09:00 |
-| Bundle built | 2026-06-25T20:57:22+09:00 |
+| Commit | `000495f` |
+| Commit date | 2026-06-25T20:57:49+09:00 |
+| Bundle built | 2026-06-25T21:11:17+09:00 |
 | Included docs | 4 |
 
 ## 포함 문서
@@ -46,7 +46,7 @@ TODO: 1-2문단으로 핵심 가치 설명. 어떤 도메인의 어떤 문제를
 TODO: 3-5줄 안에 동작 확인 가능한 명령
 \\\
 
-자세한 셋업은 [docs/start/installation.md](./docs/start/installation.md) 참조.
+이 레포는 `.make` 포맷·에셋 네이밍 규칙 문서를 다룹니다. 핵심은 [doc/MAKE_FORMAT.md](./doc/MAKE_FORMAT.md) 참조.
 
 ## FAQ
 
