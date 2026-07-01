@@ -6,13 +6,13 @@
 
 `Make` 는 VIRNECT 의 3D/AR 학습·실습 콘텐츠 저작 도구이고, 그 산출물이 `.make` 파일이다. 이 저장소는 Make 제품 소스가 아니라, **`.make` 포맷이 실제로 어떻게 생겼는지**(glTF 2.0 GLB + `VNT_*` 커스텀 확장)와 **에셋·노드를 어떻게 이름 붙여야 하는지**(네이밍 규칙)를 분석·정리한 **지식 문서 저장소**다.
 
-목적은 하나 — 사람이든 AI 에이전트든 이 문서만 보면 `.make` 콘텐츠를 **추측 없이 일관되게** 저작·검수할 수 있게 하는 것. 네이밍 규칙은 실측 `.make` 파일(수백 노드)에서 안티패턴과 실사용 어휘를 뽑아 v1 → v7 로 반복 개정해 왔고, 그 변천은 [CHANGELOG.md](./CHANGELOG.md) 에 기록돼 있다.
+목적은 하나 — 사람이든 AI 에이전트든 이 문서만 보면 `.make` 콘텐츠를 **추측 없이 일관되게** 저작·검수할 수 있게 하는 것. 네이밍 규칙은 실측 `.make` 파일(수백 노드)에서 안티패턴과 실사용 어휘를 뽑아 v1 → v8 로 반복 개정해 왔고, 그 변천은 [CHANGELOG.md](./CHANGELOG.md) 에 기록돼 있다.
 
 ## Features
 
 - **`.make` 포맷 명세** — GLB 컨테이너 구조 + 8종 `VNT_*` 확장 카탈로그(`VNT_NodeProperty`·`VNT_Event`·`VNT_Animation`·`VNT_Settings_*`·`VNT_ExternalResources` 등), `ResourceType` enum, 컴포넌트 스키마. → [doc/MAKE_FORMAT.md](./doc/MAKE_FORMAT.md)
-- **에셋 네이밍 규칙 (현재 v7)** — 2-Tier 모델(T1 원본 파일 / T2 Make Editor 인스턴스), 상태·방향·애니메이션 효과 어휘, 씬 하이어아키 표준, 검증 체크리스트.
-- **비개발자용 워크북** — [doc/assets/MakeNamingConvention_v7.xlsx](./doc/assets/MakeNamingConvention_v7.xlsx) (Overview/T1/T2/Hierarchy/Animation/Vocab/Examples/Checklist/Anti-Patterns 9시트).
+- **에셋 네이밍 규칙 (현재 v8)** — 2-Tier 모델(T1 원본 파일 / T2 Make Editor 인스턴스), 컴포넌트 서브오브젝트(`_Img`/`_Text`/`_Ico`/`_Btn`/`_Bg`)·Z 레이어·레이아웃(Align/Spacing) 규칙, 씬 하이어아키 표준, 검증 체크리스트.
+- **비개발자용 워크북** — [doc/assets/MakeNamingConvention_v8.xlsx](./doc/assets/MakeNamingConvention_v8.xlsx) (Overview/T1/T2/Hierarchy/Animation/Vocab/Examples/Checklist/Anti-Patterns 9시트).
 - **용어 매핑** — 로마자 슬러그 ↔ 한국어 정식 명칭. → [doc/GLOSSARY.md](./doc/GLOSSARY.md)
 - **버전 추적** — 규칙 개정 이력을 Keep a Changelog + SemVer 로 관리.
 
@@ -26,10 +26,10 @@
 
 ```bash
 # 1) 포맷·네이밍 규칙 SSOT 읽기
-open doc/MAKE_FORMAT.md          # .make 구조 + 네이밍 v7
+open doc/MAKE_FORMAT.md          # .make 구조 + 네이밍 v8
 
 # 2) 비개발자용 네이밍 워크북
-open doc/assets/MakeNamingConvention_v7.xlsx
+open doc/assets/MakeNamingConvention_v8.xlsx
 
 # 3) (선택) 워크북·자산 재생성 스크립트
 python scripts/build_naming_xlsx.py
@@ -43,10 +43,10 @@ python scripts/build_naming_xlsx.py
 A. glTF 2.0 Binary(GLB) 컨테이너에 VIRNECT 커스텀 확장(`VNT_*`)을 얹은 Make 콘텐츠 패키지입니다. 3D 씬은 표준 glTF, 이벤트·오디오·AR 타겟 등 인터랙션은 VNT 확장에 담깁니다. 상세는 `doc/MAKE_FORMAT.md`.
 
 **Q. 에셋 네이밍 규칙은?**
-A. `doc/MAKE_FORMAT.md` 의 `Naming Rules` (현재 v7) 참조. 용어 매핑은 `doc/GLOSSARY.md`.
+A. `doc/MAKE_FORMAT.md` 의 `Naming Rules` (현재 v8) 참조. 용어 매핑은 `doc/GLOSSARY.md`.
 
 **Q. 규칙 버전이 바뀌면 어디를 보나요?**
-A. [CHANGELOG.md](./CHANGELOG.md). 각 개정(v1→v7)의 변경 근거와 항목이 버전·날짜와 함께 기록됩니다.
+A. [CHANGELOG.md](./CHANGELOG.md). 각 개정(v1→v8)의 변경 근거와 항목이 버전·날짜와 함께 기록됩니다.
 
 **Q. Make 제품(설치파일) 버전이 올라가면 뭐가 바뀌었는지는?**
 A. [PRODUCT_CHANGELOG.md](./PRODUCT_CHANGELOG.md). 문서/네이밍 변경(CHANGELOG.md)과 **분리**해서, 설치파일 빌드 버전별 기능 추가/수정/삭제를 분석일과 함께 기록합니다.

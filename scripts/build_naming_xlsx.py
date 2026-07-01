@@ -1,10 +1,9 @@
-"""Build Make Naming Convention v7 spec + example guide as Excel workbook.
+"""Build Make Naming Convention v8 spec + example guide as Excel workbook.
 
-Output: doc/assets/MakeNamingConvention_v7.xlsx
+Output: doc/assets/MakeNamingConvention_v8.xlsx
 
-NOTE: The committed doc/assets/MakeNamingConvention_v7.xlsx is hand-tuned in Excel
-and is the authoritative copy. This script reproduces the same v7 content so the
-spec stays regenerable; minor styling may differ from the hand-tuned workbook.
+Regenerable companion to doc/MAKE_FORMAT.md (v8). Non-developer guide workbook;
+minor styling may differ from any hand-tuned copy.
 """
 from pathlib import Path
 from openpyxl import Workbook
@@ -12,7 +11,7 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "doc" / "assets" / "MakeNamingConvention_v7.xlsx"
+OUT = ROOT / "doc" / "assets" / "MakeNamingConvention_v8.xlsx"
 
 # Styles
 HDR_FONT = Font(name="Malgun Gothic", size=11, bold=True, color="FFFFFF")
@@ -86,8 +85,8 @@ wb = Workbook()
 # ─────────────────────────────────────────────────────────────
 ws = wb.active
 ws.title = "Overview"
-r = title(ws, 1, "Make Asset Naming Convention v7")
-ws.cell(row=r, column=1, value="문서 버전: v7 / Repo: Make3.0 v0.1.5 / 작성일: 2026-06-24").font = Font(name="Malgun Gothic", size=10, italic=True)
+r = title(ws, 1, "Make Asset Naming Convention v8")
+ws.cell(row=r, column=1, value="문서 버전: v8 / Repo: Make3.0 v0.1.7 / 작성일: 2026-07-01").font = Font(name="Malgun Gothic", size=10, italic=True)
 r += 2
 
 r = section(ws, r, "[ 이 문서를 읽기 전에 — 용어 안내 ]")
@@ -126,7 +125,7 @@ sheets_info = [
     ("T2 Instance", "Make Editor 인스턴스 이름 규칙 + 자주 쓰는 단어 모음"),
     ("Animation", "애니메이션 이름 규칙 + 동작·방향 약자 모음"),
     ("Vocab Tables", "약자·단어 모음 한눈에 보기"),
-    ("Examples", "실제 파일을 v7 규칙으로 바꾼 비교표"),
+    ("Examples", "실제 파일을 v8 규칙으로 바꾼 비교표"),
     ("Checklist", "내보내기 전에 확인할 항목 (체크리스트)"),
     ("Anti-Patterns", "이렇게 쓰면 안 되는 예시"),
 ]
@@ -249,12 +248,46 @@ syntax = [
 ]
 r = write_table(ws, r, ["부분", "설명", "예시"], syntax, col_widths=[18, 44, 40])
 
+r = section(ws, r, "[ 컴포넌트 서브오브젝트 (v8) — 버튼/메뉴 한 덩어리 구성 ]")
+r = note(ws, r, "버튼·메뉴처럼 이미지+글자+인터랙션이 한 덩어리인 UI 는 메뉴별 '그룹(빈 오브젝트)' 아래에 역할별로 나눠 넣습니다. 자식 이름은 부모 이름을 물려받아 <부모>_<역할> 로 짓습니다 (예: Gnb_Home_Text). 이렇게 하면 Gnb_Home 하나로 관련 객체가 다 검색되고, 사용자도 어디 소속인지 바로 압니다.", span=3)
+roles = [
+    ("_Img", "버튼 이미지 (모양 무관, 상태별 그림 교체)", "Gnb_Home_Img"),
+    ("_Text", "글자 라벨 (예전 _Label)", "Gnb_Home_Text"),
+    ("_Ico", "아이콘", "Gnb_Settings_Ico"),
+    ("_Btn", "인터랙션(클릭·이벤트) 투명 사각형", "Gnb_Home_Btn"),
+    ("_Bg", "실제 전체 배경일 때만", "Screen_Bg"),
+]
+r = write_table(ws, r, ["역할", "의미", "예시 (부모=Gnb_Home)"], roles, col_widths=[12, 46, 30])
+r = note(ws, r, "이벤트 붙이는 곳: 클릭·게이즈 같은 인터랙션은 '언제나' 투명 사각형 *_Btn 에 붙입니다 (이벤트 찾기 = *_Btn 찾기). *_Btn 은 그림보다 살짝 크게(여유 마진) 만들어 주변 영역까지 눌리게 합니다 (VR 손·시선 오차 흡수).", span=3)
+
+r = section(ws, r, "[ 겹침(잘림·z-fighting) 방지 — Z 위치 (v8) ]")
+zlayer = [
+    ("_Btn (투명, 맨 앞)", "-0.02", "입력을 먼저 가로챔. 투명이라 글자 안 가림"),
+    ("_Text / _Ico (중간)", "-0.01", "그림보다 앞"),
+    ("_Img (기준면, 맨 뒤)", "0", "기준"),
+]
+r = write_table(ws, r, ["레이어", "로컬 Z", "설명"], zlayer, col_widths=[26, 12, 46])
+r = note(ws, r, "값(Δz)은 프로젝트 크기에 맞춰 0.001~0.05 사이에서 하나로 통일해 씁니다. '앞(카메라 쪽)=Z 작아짐' 부호도 프로젝트 전체가 동일하게 씁니다. 그룹(빈 오브젝트)은 위치를 갖고 자식은 그 안에서 상대 위치만 가지므로, 메뉴를 옮기면 그림·글자·버튼이 함께 따라갑니다.", span=3)
+
+r = section(ws, r, "[ 이름이 길 때 줄이는 법 (v8) ]")
+shorten = [
+    ("부모에 이미 있는 말은 자식에 반복 안 함", "Gnb_Settings", "Gnb_SettingsMenu"),
+    ("핵심 명사 하나로", "Gnb_Profile", "Gnb_UserProfileSettings"),
+    ("정해진 약어만 사용", "Config, Info, Alert", "임의 약어"),
+    ("최대 2단어·약 12자", "UserGuide", "너무 긴 이름"),
+    ("긴 정식 명칭은 이름 말고 표시명(DisplayTitle)에", "이름=Gnb_Notice / 표시명=공지사항 알림 센터", ""),
+]
+r = write_table(ws, r, ["규칙", "✅ 이렇게", "❌ 이렇게 말고"], shorten, col_widths=[42, 40, 30])
+
+r = section(ws, r, "[ 한글은 어디에? (v8) ]")
+r = note(ws, r, "오브젝트 '이름(name)'은 영문 PascalCase 로 고정하고, 화면에 보일 한글은 '표시명(DisplayTitle)' 칸에 따로 적습니다. 이름을 한글로 쓰면 글자 깨짐(맥/윈도우 차이)·검색/코드 문제·AI 번역 부담이 생깁니다. Make 3.0 에 표시명 칸이 있으면 이름(영문)+표시명(한글) 둘 다 적고, 없으면 종류 약자(Gnb/_Img/_Btn 등)는 영문 그대로 두고 메뉴명 부분만 한글로 씁니다 (예: Gnb_홈_Btn). 나중에 도구가 영문으로 정리합니다.", span=3)
+
 # ─────────────────────────────────────────────────────────────
 # Sheet 4 — Hierarchy (씬 하이어아키 구조)
 # ─────────────────────────────────────────────────────────────
 ws = wb.create_sheet("Hierarchy")
 r = title(ws, 1, "씬 하이어아키 구조 (초안 — 검토용)")
-ws.cell(row=r, column=1, value="v7 · 2026-06-24 · Unity 씬 구조 모범사례 기반 초안입니다. 분류·이름 확인 후 수정 요청 주세요.").font = Font(name="Malgun Gothic", size=10, italic=True)
+ws.cell(row=r, column=1, value="v8 · 2026-07-01 · Unity 씬 구조 모범사례 기반. 분류·이름 확인 후 수정 요청 주세요.").font = Font(name="Malgun Gothic", size=10, italic=True)
 r += 1
 r = note(ws, r, "목적: 빈 게임오브젝트(Empty)를 \"폴더 컨테이너\"로 써서 오브젝트의 형태(증강=월드공간 / 스크린=UI공간)별로 묶어 둡니다. ① AI·사람이 구조만 보고 빠르게 검색 ② 그룹 단위 접기/숨기기로 간편한 유지보수 가 목표입니다. ※ 이 트리는 표준 템플릿이며, 장면·프로젝트에서 쓰지 않는 컨테이너는 삭제하고 씁니다 (World·Screen 모두 접두사 없는 타입 컨테이너 방식 동일).")
 
@@ -294,6 +327,24 @@ container = [
 ]
 r = write_table(ws, r, ["규칙", "이유"], container, col_widths=[56, 50])
 
+r = section(ws, r, "[ 메뉴 묶기 · 이동 단위 (v8) ]")
+menugrp = [
+    ("메뉴 버튼은 번호(Gnb_01) 대신 이름 그룹(Gnb_Home)으로 묶는다", "무슨 메뉴인지 이름만 보고 알고, 그룹 하나로 관련 객체가 다 검색됨"),
+    ("메뉴 버튼은 자기 패밀리(Gnb) 안에 둔다 — 버튼만 따로 모으지 않음", "위치·글자가 바뀌어도 이미지·글자·이벤트가 함께 움직이고 함께 찾아짐"),
+    ("그룹(빈 오브젝트)이 위치를 갖고, 자식은 그 안에서 상대 위치", "메뉴 하나를 옮기면 하위 전체가 따라옴 (연결 유지)"),
+    ("최상위 컨테이너(Screen_01/World_01/Gnb)만 원점 고정, 메뉴 그룹은 이동 단위", "기준 좌표는 최상위에서만 고정"),
+]
+r = write_table(ws, r, ["규칙", "이유"], menugrp, col_widths=[56, 50])
+
+r = section(ws, r, "[ 정렬·간격 (v8) ]")
+r = note(ws, r, "같은 바(Gnb/Snb/Bnb) 안의 메뉴들은 상위 컨테이너가 정렬·간격 규칙을 가지고 자동 배치합니다. 씬 트리에서의 순서 = 화면에서의 순서. 버튼을 넣고 빼면 자동으로 다시 정렬됩니다.", span=2)
+layout = [
+    ("Direction (방향)", "상단 Gnb·하단 Bnb → 가로 / 측면 Snb·Lnb → 세로", "바 종류로 결정"),
+    ("Align (정렬)", "가로바: 왼쪽/가운데/오른쪽 · 세로바: 위/가운데/아래", "기본 가운데(Center)"),
+    ("Spacing (간격)", "메뉴 사이 균등 간격 (고정값)", "프로젝트 전역 통일값"),
+]
+r = write_table(ws, r, ["속성", "값", "기본"], layout, col_widths=[20, 52, 28])
+
 r = section(ws, r, "[ Unity 참고 ]")
 unity_notes = [
     "• 빈 게임오브젝트를 폴더처럼 써서 객체를 그룹화하면 접기/숨기기가 쉬움",
@@ -312,7 +363,7 @@ for n in unity_notes:
 # Sheet 5 — Animation
 # ─────────────────────────────────────────────────────────────
 ws = wb.create_sheet("Animation")
-r = title(ws, 1, "애니메이션 이름 규칙 (v7)")
+r = title(ws, 1, "애니메이션 이름 규칙 (v8)")
 r = note(ws, r, "애니메이션은 '애니메이션 목록'이라는 별도 공간에 있어 종류 약자가 필요 없습니다. 이름은 대상 오브젝트와 무관하게 '무엇이 어떻게 움직이는지'를 의미 단어로 짓습니다 (가독성 우선, 약어 사용 안 함). 하나의 애니메이션이 여러 속성을 동시에 바꿀 수 있습니다.")
 
 r = section(ws, r, "[ 움직일 수 있는 속성 (4가지 · 기술 기준) ]")
@@ -361,9 +412,9 @@ r = title(ws, 1, "약자·단어 모음 한눈에 보기")
 
 r = section(ws, r, "[ UI 종류 약자 (T2 인스턴스용, 권장) ]")
 family = [
-    ("Gnb", "Global Navigation Bar (전체 메뉴바)", "이름 대신 번호로 구분 (Gnb_01, Gnb_01_On)"),
-    ("Snb", "Side Navigation Bar (측면 메뉴바)", "이름 대신 번호로 구분 (Snb_01)"),
-    ("Bnb", "Bottom Navigation Bar (하단 메뉴바)", "이름 대신 번호로 구분 (Bnb_01)"),
+    ("Gnb", "Global Navigation Bar (전체 메뉴바)", "메뉴명 그룹 우선 (Gnb_Home), 번호는 대안 (Gnb_01)"),
+    ("Snb", "Side Navigation Bar (측면 메뉴바)", "메뉴명 그룹 우선 (Snb_Layers)"),
+    ("Bnb", "Bottom Navigation Bar (하단 메뉴바)", "메뉴명 그룹 우선 (Bnb_Play)"),
     ("Btn", "Button (버튼)", "이름 반드시 함께"),
     ("Modal", "Modal / Popup (모달·팝업 창)", "이름 또는 용도 (Modal_Exit)"),
     ("Nav", "Navigation control (앞/뒤 이동 버튼)", "이름 추가 안 해도 됨"),
@@ -375,6 +426,16 @@ family = [
     ("TTS_", "음성 변환(TTS) 적용 텍스트", "TTS 적용 텍스트만 접두사 TTS_ (예: TTS_StartHeadline). 일반·버튼 텍스트는 접두사 없이 직관적 PascalCase 이름 (예: Start)"),
 ]
 r = write_table(ws, r, ["약자", "의미", "이름이 함께 필요한지"], family, col_widths=[10, 44, 48])
+
+r = section(ws, r, "[ 컴포넌트 역할 약자 (v8) ]")
+role_v = [
+    ("_Img", "버튼 이미지 (모양 무관, 상태별 그림 교체)"),
+    ("_Text", "글자 라벨 (예전 _Label)"),
+    ("_Ico", "아이콘"),
+    ("_Btn", "인터랙션(클릭·이벤트) 투명 사각형 — 이벤트는 항상 여기, 최전방 Z"),
+    ("_Bg", "실제 전체 배경일 때만"),
+]
+r = write_table(ws, r, ["역할", "의미"], role_v, col_widths=[12, 70])
 
 r = section(ws, r, "[ 상태 (풀어쓰기) ]")
 state = [
@@ -417,8 +478,8 @@ r = write_table(ws, r, ["카테고리", "풀이", "의미"], video_c, col_widths
 # Sheet 7 — Examples
 # ─────────────────────────────────────────────────────────────
 ws = wb.create_sheet("Examples")
-r = title(ws, 1, "실제 파일을 v7 규칙으로 바꾼 비교표")
-r = note(ws, r, "실제 파일(Make Templete_20260512.make, 노드 513개)의 이름을 v7 규칙으로 바꾼 예시입니다. 각 행은 \"현재 이름 → v7 이름 + 왜 바꾸는지\" 입니다.", span=5)
+r = title(ws, 1, "실제 파일을 v8 규칙으로 바꾼 비교표")
+r = note(ws, r, "실제 파일(Make Templete_20260512.make, 노드 513개)의 이름을 v8 규칙으로 바꾼 예시입니다. 각 행은 \"현재 이름 → v8 이름 + 왜 바꾸는지\" 입니다.", span=5)
 
 r = section(ws, r, "[ 씬·페이지·계층 ]")
 scene_ex = [
@@ -429,15 +490,15 @@ scene_ex = [
     ("3D Model", "Stage_3D", "T2 인스턴스", "공백 제거 + 의미 있는 이름 부여"),
     ("0016", "Cupcake", "T2 인스턴스 (용어집 등록)", "숫자로 시작하는 이름 → 의미 있는 이름으로"),
 ]
-r = write_table(ws, r, ["현재 이름", "v7 이름", "단계", "왜 바꾸나"], scene_ex,
+r = write_table(ws, r, ["현재 이름", "v8 이름", "단계", "왜 바꾸나"], scene_ex,
                 col_widths=[26, 28, 22, 36])
 
 r = section(ws, r, "[ UI 이미지 인스턴스 ]")
 ui_ex = [
-    ("GNB_Active.png", "Gnb_On", "T2", "확장자 제거, _Active → _On"),
-    ("GNB_default.png", "Gnb", "T2", "PascalCase, 기본(Default) 상태는 접미사 생략"),
-    ("GNB_Disabled.png", "Gnb_Disabled", "T2", "_Disabled 유지 (Off 와 구분)"),
-    ("GNB_Pressed.png", "Gnb_Pressed", "T2", "축약형으로"),
+    ("GNB_Active.png", "Gnb_Home_Img (On 스프라이트)", "T2", "메뉴 그룹 Gnb_Home 안 이미지, 상태는 스프라이트 교체"),
+    ("GNB_default.png", "Gnb_Home_Img", "T2", "기본 상태 스프라이트 (그룹=Gnb_Home)"),
+    ("GNB_Disabled.png", "Gnb_Home_Img (Disabled)", "T2", "비활성 스프라이트"),
+    ("GNB_Pressed.png", "Gnb_Home_Btn (이벤트 면)", "T2", "인터랙션은 투명 _Btn 에"),
     ("LNB_Active.png", "Snb_On", "T2", ""),
     ("btn_start.png", "Btn_Start", "T2", "Family 약자 Btn 사용"),
     ("btn_rotation_off.png", "Btn_Rotation_Off", "T2", ""),
@@ -448,7 +509,7 @@ ui_ex = [
     ("tooltip.png", "Tip", "T2", "Family 약자 Tip 단독 사용"),
     ("Tablet.png 3", "Pnl_Tablet_03", "T2", "Unity 가 자동으로 붙인 번호를 정리"),
 ]
-r = write_table(ws, r, ["현재 이름", "v7 이름", "단계", "왜 바꾸나"], ui_ex,
+r = write_table(ws, r, ["현재 이름", "v8 이름", "단계", "왜 바꾸나"], ui_ex,
                 col_widths=[28, 24, 8, 50])
 
 r = section(ws, r, "[ 방향이 있는 컨트롤 (형제 노드 한 글자 사용) ]")
@@ -464,7 +525,7 @@ dir_ex = [
     ("D_rotation", "Down", "T2 (형제 노드)", ""),
     ("R_rotation_Active.png", "Right_On", "T2 (형제 노드)", "방향 + 상태"),
 ]
-r = write_table(ws, r, ["현재 이름", "v7 이름", "단계", "왜 바꾸나"], dir_ex,
+r = write_table(ws, r, ["현재 이름", "v8 이름", "단계", "왜 바꾸나"], dir_ex,
                 col_widths=[30, 22, 18, 46])
 
 r = section(ws, r, "[ 텍스트·말풍선 인스턴스 ]")
@@ -473,7 +534,7 @@ text_ex = [
     ("txt_Navi_Title", "NavTitle", "T2", "T2 에서는 txt_ 같은 종류 약자 생략"),
     ("txt_Navi_page", "NavPage", "T2", ""),
 ]
-r = write_table(ws, r, ["현재 이름", "v7 이름", "단계", "왜 바꾸나"], text_ex,
+r = write_table(ws, r, ["현재 이름", "v8 이름", "단계", "왜 바꾸나"], text_ex,
                 col_widths=[26, 22, 8, 58])
 
 r = section(ws, r, "[ 애니메이션 (애니메이션 목록에 들어가므로 종류 약자 없음 · 효과 기반) ]")
@@ -486,15 +547,15 @@ anim_full = [
     ("new Clip4 (3D Model, 크기+이동)", "ZoomIn", "(애니메이션)", "확대 (이동+크기)"),
     ("new Clip5 (3D Model, 크기)", "ZoomOut", "(애니메이션)", "축소"),
 ]
-r = write_table(ws, r, ["현재 이름", "v7 이름 (효과 기반)", "단계", "왜 바꾸나"], anim_full,
+r = write_table(ws, r, ["현재 이름", "v8 이름 (효과 기반)", "단계", "왜 바꾸나"], anim_full,
                 col_widths=[36, 22, 18, 30])
 
 # ─────────────────────────────────────────────────────────────
 # Sheet 8 — Checklist
 # ─────────────────────────────────────────────────────────────
 ws = wb.create_sheet("Checklist")
-r = title(ws, 1, "내보내기 전에 확인할 항목 (v7 체크리스트)")
-r = note(ws, r, ".make 파일을 만들기 전에 한 번씩 확인하세요. 모든 항목에 ✓ 가 들어가면 v7 규칙을 잘 따른 파일입니다.", span=2)
+r = title(ws, 1, "내보내기 전에 확인할 항목 (v8 체크리스트)")
+r = note(ws, r, ".make 파일을 만들기 전에 한 번씩 확인하세요. 모든 항목에 ✓ 가 들어가면 v8 규칙을 잘 따른 파일입니다.", span=2)
 
 r = section(ws, r, "[ T1 — 원본 파일 ]")
 t1_check = [
@@ -524,6 +585,12 @@ t2_check = [
     ("UI 패밀리 약자 (Gnb/Snb/Bnb/Btn/Modal/Nav/Pnl/...) 를 사용했는가 (권장)", ""),
     ("숫자 경로(최대 3자리)가 하이픈 대신 언더바로 적혀 있는가 (Contents_3_1_1)", ""),
     ("텍스트 오브젝트가 직관적 이름이고, TTS 적용 시에만 접두사 TTS_ 가 붙어 있는가", ""),
+    ("(v8) 메뉴 버튼을 메뉴명 그룹(Gnb_Home)으로 묶었는가 (번호는 이름 없을 때만)", ""),
+    ("(v8) 컴포넌트 자식 이름이 부모_역할 형태인가 (_Img/_Text/_Ico/_Btn/_Bg, 'Text 1' 없음)", ""),
+    ("(v8) 이벤트를 투명 *_Btn 에만 붙였고 여유 마진 + 맨 앞 Z(-0.02) 인가", ""),
+    ("(v8) _Img(0)/_Text·_Ico(-0.01)/_Btn(-0.02) Z 로 겹침(잘림) 방지했는가", ""),
+    ("(v8) 같은 바 메뉴에 정렬·간격 규칙(Direction/Align/Spacing)이 있는가", ""),
+    ("(v8) 이름은 영문, 한글은 표시명(DisplayTitle)에 넣었는가", ""),
 ]
 r = write_table(ws, r, ["확인 항목", "체크 [✓]"], t2_check, col_widths=[68, 14])
 
@@ -550,7 +617,7 @@ r = write_table(ws, r, ["확인 항목", "체크 [✓]"], priv_check, col_widths
 # ─────────────────────────────────────────────────────────────
 ws = wb.create_sheet("Anti-Patterns")
 r = title(ws, 1, "이렇게 쓰면 안 되는 예시")
-r = note(ws, r, "실제 파일(Make Templete_20260512.make) 분석에서 찾은 잘못된 이름들입니다. v7 규칙에서는 모두 막거나 자동으로 고쳐집니다.", span=4)
+r = note(ws, r, "실제 파일(Make Templete_20260512.make) 분석에서 찾은 잘못된 이름들입니다. v8 규칙에서는 모두 막거나 자동으로 고쳐집니다.", span=4)
 
 anti = [
     ("노드 이름에 .png/.fbx 같은 확장자가 붙어 있음", "Logox4.png, btn_start.png", "Logo_x4, Btn_Start", "Make Editor 아이콘이 종류를 알려주므로 확장자 불필요"),

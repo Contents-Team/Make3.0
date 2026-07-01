@@ -28,6 +28,24 @@
 ### Security
 - `.gitignore` — PUBLIC 레포 보호: `*.make`·`*.pptx`·설치파일(`*.exe`/`*.zip`/`*.7z`/`*.msi`)·빌드 추출 스크래치(`_make3.0_builds/`) 무시 추가. 클라이언트 자료·바이너리 실수 커밋 방지.
 
+## [0.1.7] - 2026-07-01
+
+### Changed
+- `doc/MAKE_FORMAT.md` 네이밍 규칙 v7 → v8 개정 — **컴포넌트 서브오브젝트 모델 도입** (개별 이름 규칙 → 덩어리 단위 구조·이벤트·좌표·정렬 규정)
+  - **메뉴 그룹**: 메인 내비(`Gnb`/`Snb`/`Bnb`)를 번호 나열(`Gnb_01`)에서 **메뉴명 그룹**(`Gnb_Home`) 우선으로 전환, 번호는 이름 없을 때 fallback
+  - **부모 상속 자식 명명**: 컴포넌트 자식은 `<부모명>_<역할>` (`Gnb_Home_Text`) — `Gnb_Home` grep 한 번에 서브트리 전체, `Text 1` 류 폐지
+  - **메뉴 그룹 = 이동 단위**: 그룹 empty 가 위치 보유, 자식은 로컬 상대좌표 → 메뉴 이동 시 연결 객체 전체 동반. 원점 고정은 최상위 컨테이너에만 적용
+  - `_Label` → `_Text` 역할 슬러그 변경 (TextMeshPro 컴포넌트명 정합)
+
+### Added
+- `doc/MAKE_FORMAT.md` **Component Sub-Object Roles (v8)** 섹션 — 역할 슬러그 `_Img`(비주얼)/`_Text`(라벨)/`_Ico`(아이콘)/`_Btn`(인터랙션 면)/`_Bg`(배경) 신설
+- **인터랙션 규칙**: 이벤트는 항상 투명 사각형 `*_Btn` leaf 에 부착 ("이벤트 찾기 = `*_Btn` 찾기"), 시각물보다 여유 마진으로 주변 영역까지 선택 (VR 게이즈·터치 오차 흡수)
+- **Z 레이어 규칙**: `_Btn`(−0.02, 최전방) / `_Text`·`_Ico`(−0.01) / `_Img`(0) — 잘림·z-fighting 방지, Δz 0.001~0.05 전역 통일 부호
+- **레이아웃 규칙**: 패밀리 컨테이너가 `Direction`(Horizontal/Vertical)/`Align`(Left·Center·Right/Top·Center·Bottom)/`Spacing`(균등 간격) 보유, hierarchy 순서 = 배치 순서, 추가/삭제 시 자동 재flow
+- **이름 축약 규칙**: 부모 중복어 제거·핵심 명사 1개·승인 약어·2어 상한, 긴 정식명은 DisplayTitle 로
+- **한글·직접 저작 정책**: 노드 name 영문 PascalCase 고정 + 한글은 `DisplayTitle` 분리. Make 3.0 표시명 필드 유무 분기(있음=둘 다 저작 / 없음=구조 토큰만 영문·슬러그만 한글 허용 + MCP 정규화)
+- `doc/MAKE_FORMAT.md` **v7 → v8 보강 근거** 표 (10개 갭 → 보강)
+
 ## [0.1.6] - 2026-06-25
 
 ### Changed
