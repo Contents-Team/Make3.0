@@ -5,9 +5,9 @@
 | 항목 | 값 |
 |---|---|
 | Repo | https://github.com/Contents-Team/Make3.0.git |
-| Commit | `000495f` |
-| Commit date | 2026-06-25T20:57:49+09:00 |
-| Bundle built | 2026-06-25T21:11:17+09:00 |
+| Commit | `33d742b` |
+| Commit date | 2026-07-01T17:37:18+09:00 |
+| Bundle built | 2026-07-01T17:37:29+09:00 |
 | Included docs | 4 |
 
 ## 포함 문서
@@ -23,42 +23,60 @@
 
 # Make3.0
 
-> 한 줄 가치제안 — TODO: Make3.0 이 무엇이고, 누구의 어떤 문제를 푸는가.
+> VIRNECT **Make 3.0** 콘텐츠 저작을 위한 `.make` 파일 포맷 명세와 에셋 네이밍 규칙의 단일 진실 원천(SSOT). 사람과 AI 에이전트(MCP 저작 포함)가 함께 참조한다.
 
-## What is 
+## What is Make3.0
 
-TODO: 1-2문단으로 핵심 가치 설명. 어떤 도메인의 어떤 문제를 풀고, 기존 대안과 무엇이 다른지.
+`Make` 는 VIRNECT 의 3D/AR 학습·실습 콘텐츠 저작 도구이고, 그 산출물이 `.make` 파일이다. 이 저장소는 Make 제품 소스가 아니라, **`.make` 포맷이 실제로 어떻게 생겼는지**(glTF 2.0 GLB + `VNT_*` 커스텀 확장)와 **에셋·노드를 어떻게 이름 붙여야 하는지**(네이밍 규칙)를 분석·정리한 **지식 문서 저장소**다.
+
+목적은 하나 — 사람이든 AI 에이전트든 이 문서만 보면 `.make` 콘텐츠를 **추측 없이 일관되게** 저작·검수할 수 있게 하는 것. 네이밍 규칙은 실측 `.make` 파일(수백 노드)에서 안티패턴과 실사용 어휘를 뽑아 v1 → v8 로 반복 개정해 왔고, 그 변천은 [CHANGELOG.md](./CHANGELOG.md) 에 기록돼 있다.
 
 ## Features
 
-- TODO: 핵심 기능 1
-- TODO: 핵심 기능 2
-- TODO: 핵심 기능 3
+- **`.make` 포맷 명세** — GLB 컨테이너 구조 + 8종 `VNT_*` 확장 카탈로그(`VNT_NodeProperty`·`VNT_Event`·`VNT_Animation`·`VNT_Settings_*`·`VNT_ExternalResources` 등), `ResourceType` enum, 컴포넌트 스키마. → [doc/MAKE_FORMAT.md](./doc/MAKE_FORMAT.md)
+- **에셋 네이밍 규칙 (현재 v8)** — 2-Tier 모델(T1 원본 파일 / T2 Make Editor 인스턴스), 컴포넌트 서브오브젝트(`_Img`/`_Text`/`_Ico`/`_Btn`/`_Bg`)·Z 레이어·레이아웃(Align/Spacing) 규칙, 씬 하이어아키 표준, 검증 체크리스트.
+- **비개발자용 워크북** — [doc/assets/MakeNamingConvention_v8.xlsx](./doc/assets/MakeNamingConvention_v8.xlsx) (Overview/T1/T2/Hierarchy/Animation/Vocab/Examples/Checklist/Anti-Patterns 9시트).
+- **용어 매핑** — 로마자 슬러그 ↔ 한국어 정식 명칭. → [doc/GLOSSARY.md](./doc/GLOSSARY.md)
+- **버전 추적** — 규칙 개정 이력을 Keep a Changelog + SemVer 로 관리.
 
 ## Problems Make3.0 solves
 
-- TODO: 사용자가 겪던 문제 1 → Make3.0 의 해결
-- TODO: 문제 2 → 해결
+- **저작 일관성 부재** → `.make` 노드·에셋 이름이 제각각이던 문제를 Tier 기반 네이밍 규칙으로 표준화.
+- **AI 에이전트의 포맷 오독** → glTF 표준 뷰어는 무시하는 VNT 인터랙션 정보(이벤트·오디오·AR 타겟)를 명세로 노출해, MCP 저작 시 에이전트가 정확히 참조.
+- **규칙의 임의 변경** → 개정마다 근거(실측 갭·자기반박)와 변경 내역을 CHANGELOG 로 남겨 추적 가능.
 
 ## Quickstart
 
-\\\ash
-TODO: 3-5줄 안에 동작 확인 가능한 명령
-\\\
+```bash
+# 1) 포맷·네이밍 규칙 SSOT 읽기
+open doc/MAKE_FORMAT.md          # .make 구조 + 네이밍 v8
 
-이 레포는 `.make` 포맷·에셋 네이밍 규칙 문서를 다룹니다. 핵심은 [doc/MAKE_FORMAT.md](./doc/MAKE_FORMAT.md) 참조.
+# 2) 비개발자용 네이밍 워크북
+open doc/assets/MakeNamingConvention_v8.xlsx
+
+# 3) (선택) 워크북·자산 재생성 스크립트
+python scripts/build_naming_xlsx.py
+```
+
+이 저장소는 `.make` 포맷·에셋 네이밍 규칙 문서를 다룬다. 핵심은 [doc/MAKE_FORMAT.md](./doc/MAKE_FORMAT.md) 참조.
 
 ## FAQ
 
-**Q. TODO**
-A. TODO
+**Q. `.make` 파일은 무엇인가요?**
+A. glTF 2.0 Binary(GLB) 컨테이너에 VIRNECT 커스텀 확장(`VNT_*`)을 얹은 Make 콘텐츠 패키지입니다. 3D 씬은 표준 glTF, 이벤트·오디오·AR 타겟 등 인터랙션은 VNT 확장에 담깁니다. 상세는 `doc/MAKE_FORMAT.md`.
 
 **Q. 에셋 네이밍 규칙은?**
-A. `doc/MAKE_FORMAT.md` 의 `Naming Rules` (현재 v7) 참조. 용어 매핑은 `doc/GLOSSARY.md`.
+A. `doc/MAKE_FORMAT.md` 의 `Naming Rules` (현재 v8) 참조. 용어 매핑은 `doc/GLOSSARY.md`.
+
+**Q. 규칙 버전이 바뀌면 어디를 보나요?**
+A. [CHANGELOG.md](./CHANGELOG.md). 각 개정(v1→v8)의 변경 근거와 항목이 버전·날짜와 함께 기록됩니다.
+
+**Q. Make 제품(설치파일) 버전이 올라가면 뭐가 바뀌었는지는?**
+A. [PRODUCT_CHANGELOG.md](./PRODUCT_CHANGELOG.md). 문서/네이밍 변경(CHANGELOG.md)과 **분리**해서, 설치파일 빌드 버전별 기능 추가/수정/삭제를 분석일과 함께 기록합니다.
 
 ## Development
 
-핵심 문서는 [doc/MAKE_FORMAT.md](./doc/MAKE_FORMAT.md) (포맷·네이밍 규칙) 와 [CHANGELOG.md](./CHANGELOG.md) 참조.
+핵심 문서는 [doc/MAKE_FORMAT.md](./doc/MAKE_FORMAT.md) (포맷·네이밍 규칙) 참조. 변경 로그는 두 갈래로 분리 관리한다 — 문서/네이밍 변경은 [CHANGELOG.md](./CHANGELOG.md), 제품(설치파일) 빌드 변경은 [PRODUCT_CHANGELOG.md](./PRODUCT_CHANGELOG.md). 문서 자산 생성 스크립트는 `scripts/` (Python).
 
 ## Roadmap
 
@@ -66,15 +84,16 @@ A. `doc/MAKE_FORMAT.md` 의 `Naming Rules` (현재 v7) 참조. 용어 매핑은 
 
 ## Contributing
 
-기여 절차는 [CONTRIBUTING.md](./CONTRIBUTING.md). AI 에이전트는 [AGENTS.md](./AGENTS.md) 의 작업 규약을 먼저 읽을 것.
+기여 절차는 [CONTRIBUTING.md](./CONTRIBUTING.md). AI 에이전트는 [AGENTS.md](./AGENTS.md) 의 작업 규약을 먼저 읽을 것. 문서 변경 시 [CHANGELOG.md](./CHANGELOG.md) `Unreleased` 섹션 갱신 필수. 팀원↔Claude 업데이트 명령·PR 흐름은 [doc/UPDATE_WORKFLOW.md](./doc/UPDATE_WORKFLOW.md), 신규 협업자 접속·연결·보호 규칙은 [doc/ONBOARDING.md](./doc/ONBOARDING.md) 참조.
 
 ## Telemetry
 
-TODO: 수집 항목·옵트아웃 방법. 수집 안 한다면 `없음`으로 명시.
+없음. 이 저장소는 문서만 다루며 어떤 데이터도 수집하지 않는다.
 
 ## License
 
 MIT — [LICENSE](./LICENSE)
+
 
 ---
 
@@ -175,11 +194,11 @@ MIT — [LICENSE](./LICENSE)
 }
 ```
 
-## Naming Rules v7
+## Naming Rules v8
 
 > **목적**: **개발자, 사용자, AI 에이전트 모두** 가 `.make` 콘텐츠를 다룰 때, 각 컨텍스트(OS 파일 탐색기 / Make Editor UI / JSON·grep) 에 가장 적합한 명명 형식을 사용한다. UI 아이콘이 타입을 알려주는 컨텍스트에서는 prefix 를 제거해 간결성을 우선, 가독성을 위해 약자보다 **풀어쓰기**를 선호.
 >
-> v1: 단일 문자 prefix + NN 순번 + 영문 강제. v2: 3-Layer Identity 도입했으나 prefix 선택화로 자가설명 손실. v3: 자가설명 강제 (mandatory prefix + namespace + suffix vocab). v4: prefix 정책은 v3 유지 + **Tier 책임 분리** — 사용자는 Tier A 만 명명, 시스템이 Tier C 자동 파생. v5: **소스 에셋 파일시스템 레이어** 추가 — `.make` 내부 식별자와 외부 원본 파일 명명을 명시적으로 분리. v6: **3-Tier 책임 모델** 로 재구성 — T1 / T2 / T3. v7: **2-Tier 로 축소** — T3(시스템 파생) 삭제(시스템 자동 처리), 3D 텍스처 명명 규칙 삭제(PNG = UI 스프라이트 전용), **약자 폐지 → 풀어쓰기**(상태 `Pressed`/`On`/`Off`/`Disabled`, 방향 `Left`/`Right`/`Up`/`Down`), 도메인 약자 PascalCase(`Gnb`/`Bgm`/`Sfx`/`Info`), 영상 2종(`Info`/`Bgv`), 애니메이션 효과 기반(`Bounce`/`Spin`/...), 애니메이션 포함 모델 `Ani_` 접두사, TTS 텍스트 `TTS_` 접두사, 씬 하이어아키 표준·C# 대조표 신설.
+> v1: 단일 문자 prefix + NN 순번 + 영문 강제. v2: 3-Layer Identity 도입했으나 prefix 선택화로 자가설명 손실. v3: 자가설명 강제 (mandatory prefix + namespace + suffix vocab). v4: prefix 정책은 v3 유지 + **Tier 책임 분리** — 사용자는 Tier A 만 명명, 시스템이 Tier C 자동 파생. v5: **소스 에셋 파일시스템 레이어** 추가 — `.make` 내부 식별자와 외부 원본 파일 명명을 명시적으로 분리. v6: **3-Tier 책임 모델** 로 재구성 — T1 / T2 / T3. v7: **2-Tier 로 축소** — T3(시스템 파생) 삭제(시스템 자동 처리), 3D 텍스처 명명 규칙 삭제(PNG = UI 스프라이트 전용), **약자 폐지 → 풀어쓰기**(상태 `Pressed`/`On`/`Off`/`Disabled`, 방향 `Left`/`Right`/`Up`/`Down`), 도메인 약자 PascalCase(`Gnb`/`Bgm`/`Sfx`/`Info`), 영상 2종(`Info`/`Bgv`), 애니메이션 효과 기반(`Bounce`/`Spin`/...), 애니메이션 포함 모델 `Ani_` 접두사, TTS 텍스트 `TTS_` 접두사, 씬 하이어아키 표준·C# 대조표 신설. v8: **컴포넌트 서브오브젝트 모델** — 메뉴는 번호 대신 이름 그룹(`Gnb_Home`)으로 묶고 자식은 부모 이름을 상속(`<부모>_<역할>`), 역할 슬러그 `_Img`/`_Text`/`_Ico`/`_Btn`/`_Bg` 신설. 인터랙션(이벤트)은 투명 사각형 `_Btn` leaf 에 부착·Z 레이어 최전방 배치(잘림·z-fighting 방지). 메뉴 그룹이 위치를 갖는 이동 단위(자식 상대좌표), 패밀리 컨테이너에 레이아웃 규칙(Direction/Align/Spacing) 부여. 노드 name 은 영문 고정·한글은 DisplayTitle 로 분리. (변경 없는 하위 섹션은 v7 라벨 유지)
 
 ## Two-Tier Naming Model (v7)
 
@@ -430,7 +449,7 @@ Scene:    GlassBottle_01          ← base, 1st
 
 > `v` marker 가 소스와 인스턴스 레이어를 완전 분리. **명명 충돌 불가능.**
 
-## T2 — Instance Naming (Make Editor visible, v7)
+## T2 — Instance Naming (Make Editor visible, v8)
 
 > Make Editor 트리에 노출되는 사용자 직접 명명 노드. 아이콘이 타입을 시각적으로 알려주므로 **kind prefix 폐지**. 부모-자식 트리 컨텍스트가 의미를 보강하므로 **자식 이름은 짧게**. v7 — 약자 대신 풀어쓰기, Family 약자 뒤에도 단일 `_`.
 
@@ -459,15 +478,15 @@ Direction : Direction Vocab (해당 시, 풀어쓰기)
 State     : State Vocab (풀어쓰기, 기본 Default 는 생략)
 ```
 
-### UI Family Vocab (v7, 권장)
+### UI Family Vocab (v8, 권장)
 
-T2 인스턴스명에서 family 토큰 사용을 권장 — 인계 시 직관성·범용성 확보. 메인 내비(`Gnb`/`Snb`/`Bnb`)는 이름 대신 **번호 + 상태**로 구분.
+T2 인스턴스명에서 family 토큰 사용을 권장 — 인계 시 직관성·범용성 확보. 메인 내비(`Gnb`/`Snb`/`Bnb`)는 **메뉴명 그룹**(`Gnb_Home`)으로 묶는 것을 우선하고, 안정된 이름이 없을 때만 번호(`Gnb_01`)를 fallback 으로 쓴다. (v8 — 번호 우선 → 메뉴명 우선 전환. `Component Sub-Object Roles` 참조)
 
 | Family | 의미 | Asset slug 필요? |
 |---|---|---|
-| `Gnb` | Global Navigation Bar (전체 메뉴바) | ❌ 번호로 구분 (`Gnb_01`, `Gnb_01_On`) |
-| `Snb` | Side Navigation Bar (측면 메뉴바) | ❌ 번호로 구분 (`Snb_01`) |
-| `Bnb` | Bottom Navigation Bar (하단 메뉴바) | ❌ 번호로 구분 (`Bnb_01`) |
+| `Gnb` | Global Navigation Bar (전체 메뉴바) | ✅ 메뉴명 그룹 우선 (`Gnb_Home`), 번호는 fallback (`Gnb_01`) |
+| `Snb` | Side Navigation Bar (측면 메뉴바) | ✅ 메뉴명 그룹 우선 (`Snb_Layers`) |
+| `Bnb` | Bottom Navigation Bar (하단 메뉴바) | ✅ 메뉴명 그룹 우선 (`Bnb_Play`) |
 | `Btn` | Button (generic) | ✅ |
 | `Modal` | Modal / Popup (모달·팝업 창) | 이름 또는 용도 (`Modal_Exit`) |
 | `Nav` | Navigation control (prev/next) | ❌ |
@@ -521,6 +540,49 @@ RotationPanel
 
 → 단, sibling 이 자유 명명(Btn_Reset, Btn_ZoomIn 등) 으로 섞이면 방향 단독 금지 — 의미 슬러그 필요.
 
+### Component Sub-Object Roles (v8)
+
+버튼·메뉴처럼 **이미지 + 텍스트 + 인터랙션**이 한 덩어리를 이루는 UI 는 메뉴별 **그룹 empty**(`Gnb_Home`) 아래에 역할별 서브오브젝트로 구성한다. 자식은 **부모 이름을 접두사로 상속**(`<부모명>_<역할>`) → `Gnb_Home` 하나로 서브트리 전체가 grep 되고, 사용자도 이름만으로 소속을 안다.
+
+> 트리 컨텍스트에 기대는 "짧은 자식 이름" 원칙(위 닫힌 Sibling Vocabulary)은 **닫힌 vocab(Left/Right/Up/Down)에만** 유지. 부모 없이 의미가 불완전한 1:1 부속물(이미지·텍스트·아이콘·인터랙션 면)은 부모 상속 접두사로 **추적성**을 확보한다.
+
+| 역할 슬러그 | 의미 | 비고 |
+|---|---|---|
+| `_Img` | 버튼 비주얼 (형태 불문, 상태별 스프라이트 교체) | 배경 프레임/스프라이트 등 |
+| `_Text` | 텍스트 라벨 (구 `_Label`) | 컴포넌트(TextMeshPro Text)와 일치 |
+| `_Ico` | 아이콘 | |
+| `_Btn` | **인터랙션 사각형(투명) + 이벤트** | 이벤트·콜라이더는 전부 여기에 |
+| `_Bg` | 실제 전체 배경일 때만 | 메뉴 비주얼엔 `_Img` 사용 |
+
+**이벤트 부착 규칙**: 클릭·게이즈 등 인터랙션은 **언제나 `<그룹>_Btn` leaf** 에 붙는다 → "이벤트 찾기 = `*_Btn` leaf 찾기" 로 AI·사람 모두 100% 예측. `_Btn` 은 투명 사각형이며 시각물보다 **여유 마진**을 둬 정확 경계 밖 주변 영역까지 선택되게 한다 (VR 게이즈·터치 오차 흡수). 단독 제네릭 버튼도 동일 — `Btn_Start` 그룹의 이벤트 면은 `Btn_Start_Btn`.
+
+**Z 레이어 (잘림·z-fighting 방지)**: 그룹 empty 는 위치를 갖고(이동 단위), 자식은 **로컬 Z만 미세 전진**으로 겹치되 같은 평면을 피한다. "앞(카메라 쪽) = localZ 감소" 를 프로젝트 전역 통일 부호로 쓴다.
+
+| 레이어 | 오브젝트 | 권장 localZ |
+|---|---|---|
+| 최전방 | `_Btn` (투명, 입력 인터셉트) | −0.02 |
+| 중간 | `_Text` / `_Ico` | −0.01 |
+| 후방 | `_Img` (기준면) | 0 |
+
+> Δz 는 단위 스케일에 맞춰 **0.001 ~ 0.05** 범위에서 조정하되 전역 동일 값 사용. `_Btn` 은 투명이라 최전방이어도 텍스트를 가리지 않는다.
+
+### 이름 축약 규칙 (v8) — 메뉴명이 길 때
+
+| 규칙 | 예 |
+|---|---|
+| 부모 컨텍스트 중복어 제거 (부모가 `Gnb`면 자식에 Menu/Nav 반복 금지) | `Gnb_Settings` (❌ `Gnb_SettingsMenu`) |
+| 핵심 명사 1개로 | `사용자 프로필 설정` → `Gnb_Profile` |
+| 승인 약어 vocab 만 사용 | `Configuration`→`Config`, `Information`→`Info`, `Notification`→`Alert` |
+| 슬러그 상한 최대 2어·약 12자, 복합어는 PascalCase 2어까지 | `UserGuide` (초과 시 약어화) |
+| 긴 정식 명칭은 name 이 아니라 DisplayTitle 에 | name=`Gnb_Notice`, DisplayTitle=`공지사항 알림 센터` |
+
+### 한글·직접 저작 정책 (v8)
+
+노드 **name 은 영문 PascalCase 고정**, 사용자 대면 한글은 **`DisplayTitle`** 필드로 분리한다 (아래 `Format-Level Identifiers` 참조). name 이 조작 키이므로 한글일 때 인코딩(NFC/NFD)·토큰 비용·C# 비호환·AI 이중 번역 부담이 생긴다.
+
+- **Make 3.0 에 표시명(별칭) 필드가 있으면**: name(영문 규칙) + DisplayTitle(한글) 둘 다 저작 → 안정성·가독성 동시 확보 (권장).
+- **표시명 필드가 없어 사용자가 직접 한글로 명명하는 경우**: **구조 토큰(Family·역할·상태 — `Gnb`/`_Img`/`_Text`/`_Btn`/`_On`)은 영문 키워드로 고정**하고, **자유 슬러그(메뉴명)만 한글 허용**(`Gnb_홈_Btn`). 손실을 슬러그 한 조각으로 제한하고, MCP·린트가 후처리로 슬러그를 영문 정규화 + 한글을 DisplayTitle 로 이관한다.
+
 ### Examples — 실측 파일(`Make Templete_20260512.make`) 변환
 
 ```
@@ -531,21 +593,30 @@ SceneRoot                       (예약, 유지)
 │   ├── Btn_Start               ← btn_start.png
 │   └── Pnl_Tablet              ← Tablet.png
 ├── Contents_1_1                ← Contents 1-1 (하이픈 → _)
-│   ├── Gnb_01
-│   │   ├── Gnb_01_On           ← GNB_Active.png
-│   │   ├── Gnb_01              ← GNB_default.png (기본 상태 생략)
-│   │   ├── Gnb_01_Disabled     ← GNB_Disabled.png
-│   │   └── Gnb_01_Pressed
-│   └── Snb_01_01
+│   ├── Gnb                     ← 패밀리 컨테이너 (원점 고정 + 레이아웃 규칙)
+│   │   ├── Gnb_Home            ← 메뉴 그룹 (위치 보유·이동 단위) DisplayTitle="홈"
+│   │   │   ├── Gnb_Home_Img    ← GNB 이미지(상태별 스프라이트) localZ  0
+│   │   │   │   └── Gnb_Home_Text   ← 라벨                    localZ -0.01
+│   │   │   └── Gnb_Home_Btn    ← 이벤트 면(투명)             localZ -0.02
+│   │   ├── Gnb_Settings
+│   │   │   ├── Gnb_Settings_Img
+│   │   │   │   ├── Gnb_Settings_Ico    ← 아이콘            localZ -0.01
+│   │   │   │   └── Gnb_Settings_Text   ← 라벨              localZ -0.01
+│   │   │   └── Gnb_Settings_Btn ← 이벤트 면
+│   │   └── Gnb_Profile
+│   │       ├── Gnb_Profile_Img
+│   │       │   └── Gnb_Profile_Text
+│   │       └── Gnb_Profile_Btn
+│   └── Snb_Layers              ← 측면 메뉴도 동일 구조 (Snb_Layers_Img/_Text/_Btn)
 ├── Contents_3_1_1              ← 위계, 하이픈 → _ (숫자 최대 3자리)
 └── Contents_4
     ├── Stage_3D                ← '3D Model' (공백 제거)
     │   └── Ani_Cupcake         ← '0016' (애니메이션 포함; GLOSSARY: 0016 → Cupcake)
     ├── Pnl_Nav                 ← Navi.png
     │   ├── Btn_Navi_Left
-    │   │   ├── Btn_Navi_Left           ← 기본 상태 생략
-    │   │   ├── Btn_Navi_Left_Off
-    │   │   └── Btn_Navi_Left_Pressed   (오타 Presssed 교정; 구 Highlight → Pressed)
+    │   │   ├── Btn_Navi_Left_Img        ← 상태별 스프라이트(_Off 등) 교체
+    │   │   │   └── Btn_Navi_Left_Ico
+    │   │   └── Btn_Navi_Left_Btn        ← 이벤트 면(투명)
     │   ├── Nav_Title
     │   ├── Nav_Page
     │   ├── Btn_Navi_Right
@@ -612,7 +683,7 @@ Direction : 방향이 필요하면 풀어쓰기 (_Left / _Right / _Up / _Down)
 
 > `^new Clip\d*$` 패턴은 임포트 검증에서 차단 (Unity 기본값 누설 방지). `Color`(`Fade`/`Highlight`) 효과는 3D 모델에 사용 금지 — UI·2D 전용.
 
-## Scene Hierarchy (v7)
+## Scene Hierarchy (v8)
 
 > 빈 게임오브젝트(Empty)를 **"폴더 컨테이너"** 로 써서 오브젝트의 형태(증강 = 월드 공간 / 스크린 = UI 공간)별로 묶는다. ① AI·사람이 구조만 보고 빠르게 검색 ② 그룹 단위 접기/숨기기로 간편한 유지보수가 목표. 표준 템플릿이며, 쓰지 않는 컨테이너는 삭제하고 쓴다 (World·Screen 모두 접두사 없는 타입 컨테이너 방식 동일).
 
@@ -643,11 +714,32 @@ Screen_01                 UI·사운드 (스크린 공간)
 └── Audio                 UI 사운드 · Nar(TTS 시 텍스트) 예: Sfx_Click_01, Nar_Intro_01
 ```
 
+### 메뉴 그룹 · 이동 단위 (v8)
+
+`Gnb`/`Snb`/`Bnb` 등 내비 패밀리 컨테이너 아래는 **메뉴 버튼마다 그룹 empty**(`Gnb_Home`)로 묶는다. 번호 나열(`Gnb_01`) 대신 메뉴명 그룹이 기본 — 무슨 메뉴인지 이름만으로 파악, 서브트리 통째 검색.
+
+- **메뉴 버튼은 자기 패밀리(`Gnb`) 안에 산다** — 별도 `Btn` 수집 컨테이너로 분리하지 않는다. 위치·텍스트가 바뀌어도 연결 객체(이미지·텍스트·이벤트 면)가 함께 이동·검색되게 하기 위함. (최상위 `Btn` 컨테이너는 내비에 속하지 않는 **단독 버튼** 전용)
+- **메뉴 그룹이 위치를 갖는 이동 단위** — 자식은 로컬 상대좌표(+ Z 미세 오프셋). 메뉴 하나 이동 = empty 하나 이동 → 하위 전부 따라옴.
+- 그룹 내부 구성·Z 레이어·이벤트(`_Btn`) 규칙은 `T2 → Component Sub-Object Roles` 참조.
+
+### 레이아웃 규칙 — 정렬·간격 (v8)
+
+같은 상위 패밀리 컨테이너(`Gnb`/`Snb`/`Lnb`…)가 **레이아웃 규칙을 메타데이터로 보유** → MCP·사용자가 결정론적으로 재배치. 자식(메뉴 그룹) **hierarchy 순서 = 화면 배치 순서**.
+
+| 속성 | 값 | 기본 |
+|---|---|---|
+| `Direction` | 상단 `Gnb`·하단 `Bnb` → Horizontal / 측면 `Snb`·`Lnb` → Vertical | 바 종류로 결정 |
+| `Align` | 수평바 `Left`/`Center`/`Right` · 수직바 `Top`/`Center`/`Bottom` | `Center` |
+| `Spacing` | 항목 간 **균등 간격**(고정값) | 프로젝트 전역 통일값 |
+
+- 컨테이너가 자식 순서대로 `Align` 기준점에서 `Spacing` 간격으로 **자동 재계산** — 버튼 추가/삭제/순서변경 시 재flow, 위치 수동 조정 불필요.
+- 예: `Gnb`(Horizontal·Center·Spacing=120) 아래 3개 → 중앙 기준 등간격. 4번째 추가 시 4개가 다시 중앙 정렬로 재배치.
+
 ### 컨테이너 규칙
 
 | 규칙 | 이유 |
 |---|---|
-| 최상위 컨테이너는 빈 오브젝트, Transform 원점(0,0,0)·Scale 1 고정 | 자식 오브젝트의 월드 좌표가 틀어지지 않도록 |
+| **최상위** 컨테이너(`Screen_01`/`World_01`/`Gnb`)만 Transform 원점(0,0,0)·Scale 1 고정 | 하위 좌표 기준 고정. **메뉴 그룹(`Gnb_Home`)은 위치를 갖는 이동 단위** — 이동 시 자식(Img/Text/Btn) 전체가 따라옴 |
 | 컨테이너 안 분류는 접두사 없이 패밀리/타입 이름 (`Models`, `Gnb`, `Audio`) · PascalCase | AI·검색이 형태와 종류를 바로 인식 |
 | 그룹 안에 객체를 자식(child)으로 넣어 정리 → 접기/숨기기로 관리 | 씬이 커져도 한눈에 보고 빠르게 찾음 |
 | 순수 정리용 빈 오브젝트에는 `EditorOnly` 태그 → 빌드에서 자동 제외 | 런타임 메모리·계층 영향 최소화 |
@@ -735,6 +827,25 @@ ASCII 기반 식별자. 사용자가 명명하는 노드는 T2 규칙(PascalCase
 | **로컬 작업본** | OriginPath 보존 OK (round-trip · 재임포트용) |
 | **공유/배포본** | 익스포트 파이프라인에서 다음 변환:<br>① `C:\Users\<유저명>` → `<HOME>` 치환<br>② `<HOME>/Downloads/work/Projects/<프로젝트>` → `<PROJECT_ROOT>` 치환<br>③ 사용자명·식별 정보 스크럽 |
 | **외부 배포본** | OriginPath 필드 완전 제거. ResourceID 만 유지 |
+
+## v7 → v8 보강 근거 — "컴포넌트 서브오브젝트 + 추적성 + 실제 제작(MCP) 정합"
+
+v7 은 인스턴스 **개별 이름**은 정리했으나, 버튼처럼 이미지·텍스트·인터랙션이 한 덩어리인 UI 의 **내부 구성·이벤트 위치·정렬**이 미규정. MCP 로 실제 제작·수정할 때 "어느 객체가 어디에 연결됐는지" 찾기 어렵다는 피드백 반영.
+
+| # | v7 갭 | v8 보강 |
+|---|---|---|
+| 1 | 메뉴가 번호(`Gnb_01`)뿐 — 이름만으로 무슨 메뉴인지 모름 | **메뉴명 그룹**(`Gnb_Home`) 우선, 번호는 fallback |
+| 2 | 자식 이름이 트리 컨텍스트에만 의존 → 트리 밖 검색 시 소속 불명 (`Text 1`) | **부모 상속 접두사** `<부모>_<역할>` (`Gnb_Home_Text`) — grep 한 번에 서브트리 |
+| 3 | 이미지·텍스트·인터랙션 역할 구분 슬러그 부재 | 역할 슬러그 `_Img`/`_Text`/`_Ico`/`_Btn`/`_Bg` 신설 |
+| 4 | 이벤트가 어느 객체에 붙는지 규칙 없음 | **이벤트는 항상 `*_Btn` leaf** (투명 사각형) — 예측 가능 |
+| 5 | 정확 경계만 클릭 → VR 게이즈·터치 오차로 선택 실패 | `_Btn` 에 **여유 마진** + **최전방 Z**(−0.02)로 주변 영역까지 선택 |
+| 6 | 이미지·텍스트 같은 평면 → 잘림·z-fighting | **Z 레이어**(`_Img` 0 / `_Text` −0.01 / `_Btn` −0.02), 전역 통일 부호 |
+| 7 | 메뉴 이동 시 연결 객체 분리 위험 | 메뉴 그룹이 **위치를 갖는 이동 단위**, 자식 상대좌표 |
+| 8 | 같은 바의 메뉴 정렬·간격 미규정 | 패밀리 컨테이너 **레이아웃 규칙**(Direction/Align/Spacing), 트리 순서 = 배치 순서 |
+| 9 | 한글 직접 저작 시 name 오염(인코딩·토큰·C#) | name 영문 고정 + **한글 DisplayTitle 분리**, 필드 부재 시 구조 토큰만 영문·슬러그만 한글 허용 |
+| 10 | 긴 메뉴명 축약 기준 없음 | **축약 규칙**(중복어 제거·핵심 명사 1개·승인 약어·2어 상한, 정식명은 DisplayTitle) |
+
+**핵심 결정**: "개별 이름 규칙"(v7) → **덩어리(컴포넌트) 단위의 구조·이벤트·좌표·정렬까지 규정**. AI·사람이 "찾기·수정·연결 확인"을 이름과 트리만으로 결정론적으로 수행.
 
 ## v6 → v7 보강 근거 — "단순화 + 가독성 + 실사용 정합"
 
@@ -890,7 +1001,7 @@ v1 규칙의 8가지 허점과 보강 매핑 (역사적 기록):
 | 절대경로 OriginPath 박제 | `VNT_ExternalResources` | 정보 누설·이식성↓ |
 | ResourceID 와 노드명 불일치 | F1 mp3 노드 | 매핑 추적 어려움 |
 
-## Validation Checklist (`.make` 익스포트 전, v7)
+## Validation Checklist (`.make` 익스포트 전, v8)
 
 ### T1 — Source Asset Filesystem 검증
 - [ ] 파일명에 공백 없음, 구분자는 `_` 만 (**하이픈 0건**)
@@ -917,6 +1028,12 @@ v1 규칙의 8가지 허점과 보강 매핑 (역사적 기록):
 - [ ] UI Family vocab (`Gnb`/`Snb`/`Bnb`/`Btn`/`Modal`/`Nav`/`Pnl`/`Ico`/`Bg`/`Logo`/`Tip`) 권장 적용, 메인 내비는 번호+상태 (`Gnb_01_On`)
 - [ ] 애니메이션 포함 3D 모델에 접두사 `Ani_`
 - [ ] 텍스트 오브젝트는 직관적 이름, 음성 변환(TTS) 적용 시에만 접두사 `TTS_`
+- [ ] (v8) 메뉴 버튼은 메뉴명 그룹(`Gnb_Home`)으로 묶임 — 번호 나열은 이름 없을 때만
+- [ ] (v8) 컴포넌트 자식은 부모 상속 접두사 `<부모>_<역할>` (`_Img`/`_Text`/`_Ico`/`_Btn`/`_Bg`), `Text 1` 류 0건
+- [ ] (v8) 인터랙션(이벤트)은 투명 `*_Btn` leaf 에만 부착, 여유 마진 + 최전방 Z(−0.02)
+- [ ] (v8) `_Img`(0)/`_Text`·`_Ico`(−0.01)/`_Btn`(−0.02) Z 레이어로 잘림·z-fighting 방지, 전역 부호 통일
+- [ ] (v8) 메뉴 그룹이 위치 보유(이동 단위), 패밀리 컨테이너에 레이아웃 규칙(Direction/Align/Spacing)
+- [ ] (v8) 노드 name 은 영문 고정, 한글은 DisplayTitle — 직접 저작 시 구조 토큰 영문 유지
 
 ### Animation 검증
 - [ ] 애니메이션명에 prefix·대상 오브젝트명 없음 — `<Effect>[_<Direction>]` 패턴
@@ -1025,13 +1142,24 @@ jq '.extensions.VNT_ExternalResources.ResourceItems[] | {ResourceID, ResourceTyp
 
 # Changelog
 
+> **범위: 이 레포의 문서(특히 `doc/MAKE_FORMAT.md` 의 `.make` 포맷·에셋 네이밍 규칙) 변경 이력.**
+> Make **제품(설치파일/빌드) 버전별 기능 변경**은 별도 로그 [PRODUCT_CHANGELOG.md](./PRODUCT_CHANGELOG.md) 참조.
+
 이 파일의 모든 주요 변경은 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 형식을 따르며, 버전은 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 을 사용합니다.
 
 ## [Unreleased]
 
 ### Added
+- `PRODUCT_CHANGELOG.md` — Make 제품(설치파일/빌드) 버전별 기능 변경 로그 신설. 이 문서 변경 로그와 **별도 관리**. 베이스라인 `3.1.0.8` + `3.1.0.7→3.1.0.8` diff 항목.
+- `doc/UPDATE_WORKFLOW.md` — 팀원↔Claude 협업 규약(상황별 명령 예시·두 로그 구분·PR/승인 흐름).
+- `doc/ONBOARDING.md` — 협업자 온보딩(접근·gh 인증·클론·Claude 연결) + main 브랜치 보호 규칙 요약.
+- `doc/product/BUILD_3.1.0.8.md` — 3.1.0.8 빌드 관찰(실측 `VIRNECT.Components` 58종 카탈로그). 규칙 SSOT와 격리.
+- `versions/3.1.0.8.virnect-api.json` — 3.1.0.8 VIRNECT.* 타입/필드 표면(원시, diff 근거).
+- `tools/dump-api.ps1` + `tools/README.md` — 빌드 C# API 지문·버전 diff 워크플로우(실행 없이 메타데이터 판독).
 
 ### Changed
+- `README.md` — TODO 플레이스홀더를 실제 레포 내용으로 채움(`.make` 포맷 = glTF GLB + `VNT_*`, 네이밍 v7, `doc/` 구조, Python 스크립트, 텔레메트리 없음 명시). 기존 섹션 구조 보존.
+- `CHANGELOG.md` — 헤더에 범위 명시(문서/네이밍 변경 전용) + `PRODUCT_CHANGELOG.md` 교차 링크.
 
 ### Deprecated
 
@@ -1040,6 +1168,25 @@ jq '.extensions.VNT_ExternalResources.ResourceItems[] | {ResourceID, ResourceTyp
 ### Fixed
 
 ### Security
+- `.gitignore` — PUBLIC 레포 보호: `*.make`·`*.pptx`·설치파일(`*.exe`/`*.zip`/`*.7z`/`*.msi`)·빌드 추출 스크래치(`_make3.0_builds/`) 무시 추가. 클라이언트 자료·바이너리 실수 커밋 방지.
+
+## [0.1.7] - 2026-07-01
+
+### Changed
+- `doc/MAKE_FORMAT.md` 네이밍 규칙 v7 → v8 개정 — **컴포넌트 서브오브젝트 모델 도입** (개별 이름 규칙 → 덩어리 단위 구조·이벤트·좌표·정렬 규정)
+  - **메뉴 그룹**: 메인 내비(`Gnb`/`Snb`/`Bnb`)를 번호 나열(`Gnb_01`)에서 **메뉴명 그룹**(`Gnb_Home`) 우선으로 전환, 번호는 이름 없을 때 fallback
+  - **부모 상속 자식 명명**: 컴포넌트 자식은 `<부모명>_<역할>` (`Gnb_Home_Text`) — `Gnb_Home` grep 한 번에 서브트리 전체, `Text 1` 류 폐지
+  - **메뉴 그룹 = 이동 단위**: 그룹 empty 가 위치 보유, 자식은 로컬 상대좌표 → 메뉴 이동 시 연결 객체 전체 동반. 원점 고정은 최상위 컨테이너에만 적용
+  - `_Label` → `_Text` 역할 슬러그 변경 (TextMeshPro 컴포넌트명 정합)
+
+### Added
+- `doc/MAKE_FORMAT.md` **Component Sub-Object Roles (v8)** 섹션 — 역할 슬러그 `_Img`(비주얼)/`_Text`(라벨)/`_Ico`(아이콘)/`_Btn`(인터랙션 면)/`_Bg`(배경) 신설
+- **인터랙션 규칙**: 이벤트는 항상 투명 사각형 `*_Btn` leaf 에 부착 ("이벤트 찾기 = `*_Btn` 찾기"), 시각물보다 여유 마진으로 주변 영역까지 선택 (VR 게이즈·터치 오차 흡수)
+- **Z 레이어 규칙**: `_Btn`(−0.02, 최전방) / `_Text`·`_Ico`(−0.01) / `_Img`(0) — 잘림·z-fighting 방지, Δz 0.001~0.05 전역 통일 부호
+- **레이아웃 규칙**: 패밀리 컨테이너가 `Direction`(Horizontal/Vertical)/`Align`(Left·Center·Right/Top·Center·Bottom)/`Spacing`(균등 간격) 보유, hierarchy 순서 = 배치 순서, 추가/삭제 시 자동 재flow
+- **이름 축약 규칙**: 부모 중복어 제거·핵심 명사 1개·승인 약어·2어 상한, 긴 정식명은 DisplayTitle 로
+- **한글·직접 저작 정책**: 노드 name 영문 PascalCase 고정 + 한글은 `DisplayTitle` 분리. Make 3.0 표시명 필드 유무 분기(있음=둘 다 저작 / 없음=구조 토큰만 영문·슬러그만 한글 허용 + MCP 정규화)
+- `doc/MAKE_FORMAT.md` **v7 → v8 보강 근거** 표 (10개 갭 → 보강)
 
 ## [0.1.6] - 2026-06-25
 
