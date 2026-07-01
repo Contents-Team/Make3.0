@@ -61,7 +61,7 @@ A. [PRODUCT_CHANGELOG.md](./PRODUCT_CHANGELOG.md). 문서/네이밍 변경(CHANG
 
 ## Contributing
 
-기여 절차는 [CONTRIBUTING.md](./CONTRIBUTING.md). AI 에이전트는 [AGENTS.md](./AGENTS.md) 의 작업 규약을 먼저 읽을 것. 문서 변경 시 [CHANGELOG.md](./CHANGELOG.md) `Unreleased` 섹션 갱신 필수. 팀원↔Claude 업데이트 명령·PR 흐름은 [doc/UPDATE_WORKFLOW.md](./doc/UPDATE_WORKFLOW.md) 참조.
+기여 절차는 [CONTRIBUTING.md](./CONTRIBUTING.md). AI 에이전트는 [AGENTS.md](./AGENTS.md) 의 작업 규약을 먼저 읽을 것. 문서 변경 시 [CHANGELOG.md](./CHANGELOG.md) `Unreleased` 섹션 갱신 필수. 팀원↔Claude 업데이트 명령·PR 흐름은 [doc/UPDATE_WORKFLOW.md](./doc/UPDATE_WORKFLOW.md), 신규 협업자 접속·연결·보호 규칙은 [doc/ONBOARDING.md](./doc/ONBOARDING.md) 참조.
 
 ## Telemetry
 
