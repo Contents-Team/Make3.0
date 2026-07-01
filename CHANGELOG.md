@@ -1,12 +1,20 @@
 # Changelog
 
+> **범위: 이 레포의 문서(특히 `doc/MAKE_FORMAT.md` 의 `.make` 포맷·에셋 네이밍 규칙) 변경 이력.**
+> Make **제품(설치파일/빌드) 버전별 기능 변경**은 별도 로그 [PRODUCT_CHANGELOG.md](./PRODUCT_CHANGELOG.md) 참조.
+
 이 파일의 모든 주요 변경은 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 형식을 따르며, 버전은 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 을 사용합니다.
 
 ## [Unreleased]
 
 ### Added
+- `PRODUCT_CHANGELOG.md` — Make 제품(설치파일/빌드) 버전별 기능 변경 로그 신설. 이 문서 변경 로그와 **별도 관리**. 베이스라인 `3.1.0.4` 항목 포함.
+- `doc/UPDATE_WORKFLOW.md` — 팀원↔Claude 협업 규약(상황별 명령 예시·두 로그 구분·PR/승인 흐름).
+- `doc/ONBOARDING.md` — 협업자 온보딩(접근·gh 인증·클론·Claude 연결) + main 브랜치 보호 규칙 요약.
 
 ### Changed
+- `README.md` — TODO 플레이스홀더를 실제 레포 내용으로 채움(`.make` 포맷 = glTF GLB + `VNT_*`, 네이밍 v7, `doc/` 구조, Python 스크립트, 텔레메트리 없음 명시). 기존 섹션 구조 보존.
+- `CHANGELOG.md` — 헤더에 범위 명시(문서/네이밍 변경 전용) + `PRODUCT_CHANGELOG.md` 교차 링크.
 
 ### Deprecated
 
@@ -15,6 +23,7 @@
 ### Fixed
 
 ### Security
+- `.gitignore` — PUBLIC 레포 보호: `*.make`·`*.pptx`·설치파일(`*.exe`/`*.zip`/`*.7z`/`*.msi`)·빌드 추출 스크래치(`_make3.0_builds/`) 무시 추가. 클라이언트 자료·바이너리 실수 커밋 방지.
 
 ## [0.1.6] - 2026-06-25
 

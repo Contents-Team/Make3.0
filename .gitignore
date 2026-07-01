@@ -27,3 +27,17 @@ pnpm-debug.log*
 # Misc
 .cache/
 .turbo/
+
+# --- PUBLIC repo 보호: 실수 커밋 방지 (2026-07-01) ---
+# 콘텐츠 산출물 / 클라이언트 자료 (레포는 포맷·규칙 문서만; 실물은 커밋 금지)
+*.make
+*.pptx
+*.ppt
+# 설치파일 / 바이너리 (분석은 지문·문서로만 남김, 원본 미커밋)
+*.exe
+*.zip
+*.7z
+*.msi
+# 빌드 추출 스크래치
+_make3.0_builds/
+_builds/
