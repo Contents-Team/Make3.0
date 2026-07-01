@@ -8,9 +8,12 @@
 ## [Unreleased]
 
 ### Added
-- `PRODUCT_CHANGELOG.md` — Make 제품(설치파일/빌드) 버전별 기능 변경 로그 신설. 이 문서 변경 로그와 **별도 관리**. 베이스라인 `3.1.0.4` 항목 포함.
+- `PRODUCT_CHANGELOG.md` — Make 제품(설치파일/빌드) 버전별 기능 변경 로그 신설. 이 문서 변경 로그와 **별도 관리**. 베이스라인 `3.1.0.8` + `3.1.0.7→3.1.0.8` diff 항목.
 - `doc/UPDATE_WORKFLOW.md` — 팀원↔Claude 협업 규약(상황별 명령 예시·두 로그 구분·PR/승인 흐름).
 - `doc/ONBOARDING.md` — 협업자 온보딩(접근·gh 인증·클론·Claude 연결) + main 브랜치 보호 규칙 요약.
+- `doc/product/BUILD_3.1.0.8.md` — 3.1.0.8 빌드 관찰(실측 `VIRNECT.Components` 58종 카탈로그). 규칙 SSOT와 격리.
+- `versions/3.1.0.8.virnect-api.json` — 3.1.0.8 VIRNECT.* 타입/필드 표면(원시, diff 근거).
+- `tools/dump-api.ps1` + `tools/README.md` — 빌드 C# API 지문·버전 diff 워크플로우(실행 없이 메타데이터 판독).
 
 ### Changed
 - `README.md` — TODO 플레이스홀더를 실제 레포 내용으로 채움(`.make` 포맷 = glTF GLB + `VNT_*`, 네이밍 v7, `doc/` 구조, Python 스크립트, 텔레메트리 없음 명시). 기존 섹션 구조 보존.

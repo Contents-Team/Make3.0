@@ -1,0 +1,1064 @@
+[
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "CoordinateSystem",
+    "fields": "up,right,forward,IMPORT_DEFAULT"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "EncodedPNGImage",
+    "fields": "bytes,name"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "Image",
+    "fields": "buffer,width,height,channels"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "ImageTrainConfig",
+    "fields": "physicalSize,targetName,path,allowLowFeatureCount"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "Keyframe",
+    "fields": "position,forward,up,id,frameColors,imageWidth,imageHeight"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "Model3D",
+    "fields": "vertices,uvs,indices,diffuseTexture"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "Model3DFileTypes",
+    "fields": "value__,UNKNOWN,GLTF,OBJ,FBX,STL"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "Model3DTrainConfig",
+    "fields": "targetName,modelPath,scale,elevationAngleMin,elevationAngleMax,azimuthAngleMin,azimuthAngleMax,desiredUpVector,desiredForwardVector,desiredTranslation,importCoordinateSystem,generateDebugData,forceCADTraining"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "QRTrainConfig",
+    "fields": "physicalSize,targetName,content"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "TargetMetadata",
+    "fields": "name,targetType,physicalSize,UUID,version,trackabilityScore"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "TargetType",
+    "fields": "value__,UNDEFINED,IMAGE,QRCODE,CADMODEL,MAP,PLANE,BOX,CYLINDER,OBJECT3D,SPATIAL,WORLD"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "TrainerInterface",
+    "fields": "productName,DocumentationURL,VirnectURL,VirnectSupportURL,TrainTargetNameRegex,TrainTargetNameMaxLength,QRContentMaxLenght"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT",
+    "name": "TTTInterface",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "Virnect.Assets.UI",
+    "name": "LayoutGroupUpdate",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ActionItem",
+    "fields": "Target,EventAction,Delay,PropertyModification"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "Anchor",
+    "fields": "value__,LeftTop,CenterTop,RightTop,LeftMiddle,CenterMiddle,RightMiddle,LeftBottom,CenterBottom,RightBottom"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "AnchorDirection",
+    "fields": "value__,Left,Center,Right,Top,Middle,Bottom"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "AnchorExtension",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "AnimationComponent",
+    "fields": "AnimationIDTables,Clips"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "AnimationIDTable",
+    "fields": "Clip,Identifier"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "AnimationPropertyEvent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "AudioComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "AxisFlags",
+    "fields": "X,Y,Z"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ClipCurveData",
+    "fields": "CurveDataType,NodeObject,PropertyName,Curve,ComponentType"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ClipCurveDataType",
+    "fields": "value__,None,Node,Component,Property"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ComparisonCondition",
+    "fields": "Type,CompareValue"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ComparisonType",
+    "fields": "value__,GreaterThan,LessThan,Equal,NotEqual,GreaterThanOrEqual,LessThanOrEqual,Contains"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ContentPropertyModification",
+    "fields": "ContentQueryType"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "DataComponent",
+    "fields": "Interval,Loop,RequestOnAwake"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "DataFormat",
+    "fields": "value__,JSON,XML,ETC"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "EventAction",
+    "fields": "value__,MoveScene,Play,PlayPause,PlayStop,Pause,Stop,Show,Hide,OpenURL,SetUp,OpenContent"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "EventComponent",
+    "fields": "EventItems"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "EventItem",
+    "fields": "TriggerTarget,EventTrigger,PlaybackEndID,PlaybackEndTime,ActionItems"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "EventTrigger",
+    "fields": "value__,OnEnable,Tap,DoubleTap,PressStart,PressEnd,CollisionEnter,CollisionExit,PlaybackEnd,OnDisable"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "GroupType",
+    "fields": "value__,Scene,Target,Global,Screen,SceneGroup,Node"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "HeaderData",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "IAssetComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "IGroupComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ImageComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "IPlayerComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "KeyValueData",
+    "fields": "Key,Value"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "MakeRuntimeAnimationClip",
+    "fields": "Identifier"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "MaterialComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "MeshComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ModifiableProperty",
+    "fields": "value__,None,Text,Position,EulerAngles,Scale,Color,Resource"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ObjectComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ParamData",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "PlayPropertyModification",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "PropertyModification",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "RequestMethod",
+    "fields": "value__,GET,POST_RAW,POST_FORM"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "RequireUnityComponent`1",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ResponseHandler",
+    "fields": "Comparison,ActionItems"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "RestApiComponent",
+    "fields": "RequestDatas"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "RestAPIData",
+    "fields": "Method,DomainAddress,EndPoint,Headers,Params,PostRawData,Subscribers"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "RestAPISubscriber",
+    "fields": "Filter,ResponseHandler"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "SceneComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "SceneRoot",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ScreenComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ScreenTransformComponent",
+    "fields": "Anchor,AnchorPosition"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "SetPropertyModification",
+    "fields": "ModifiableProperty"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "ShapeComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "SocketComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "StringPropertyModification",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "Subscriber",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "TargetPreviewComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "TextComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "TransformComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "UserData",
+    "fields": "Subscribers"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "UserDataComponent",
+    "fields": "UserDatas"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "UserDataSubscriber",
+    "fields": "Value"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "VideoComponent",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VIRNECT.Components",
+    "name": "VisualComponent",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor",
+    "name": "ColorEditor",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor",
+    "name": "MakeRuntimeEditor",
+    "fields": "ExternalResourceManager"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor",
+    "name": "PBRMaterialComponentDescriptor",
+    "fields": "ShowTextureEditor"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.ComponentEditor",
+    "name": "EditingMaterialState",
+    "fields": "Renderer,SelectedIndex,EditingMaterialIndices"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.ComponentEditor",
+    "name": "IExtendedMaterialDescriptor",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.ComponentEditor",
+    "name": "MakeMaterialEditor",
+    "fields": "MaterialDescriptors,Materials,CurrentMaterial"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "AudioExternalResource",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "ClipboardManager",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "ComponentType",
+    "fields": "value__,Scene,Shape,Text,Image,Video,Model,Audio,Screen,Empty,RestAPIData,UserData,Template"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "DialogManager",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "DialogWindowDescriptor",
+    "fields": "TypeName,IsModal,Descriptor"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "ExternalResource",
+    "fields": "ResourceID,OriginPath,Thumbnail"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "ExternalResourceExporter",
+    "fields": "AssetTempFolder"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "ExternalResourceManager",
+    "fields": "thumbnailMaker,ExternalResources"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "ImageExternalResource",
+    "fields": "Texture"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "MakeScene",
+    "fields": "value__,Login,Home,Editor"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "MakeSceneManager",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "MediaExternalResource",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "ModelExternalResource",
+    "fields": "ModelObject"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "ObjectCreationManager",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "ObjectNameUtility",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "ProjectManager",
+    "fields": "ContentTitle,SceneInfoCanvas,projectFileURL,ThumbnailTexture"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "ProjectThumbnailManager",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "ResourceType",
+    "fields": "value__,ALL,Image,Model,Audio,Video,Template,Media"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "TemplateExternalResource",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "VideoExternalResource",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VIRNECT.MakeEditor.Manager",
+    "name": "WindowManager",
+    "fields": ""
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training",
+    "name": "API",
+    "fields": ""
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training",
+    "name": "IAPIService",
+    "fields": ""
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training",
+    "name": "RemoteTrainerException",
+    "fields": ""
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints",
+    "name": "BaseRequest",
+    "fields": "PAYLOAD_MULTIPART_FORM_BOUNDARY"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints",
+    "name": "IRequest",
+    "fields": ""
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints",
+    "name": "IResponse",
+    "fields": ""
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints",
+    "name": "Response",
+    "fields": "targetData"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints",
+    "name": "TrainingRequest",
+    "fields": "targetName"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints.HealthcheckEndpoint",
+    "name": "Request",
+    "fields": ""
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints.HealthcheckEndpoint",
+    "name": "Response",
+    "fields": ""
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints.ImageEndpoint",
+    "name": "Request",
+    "fields": "imageContent,imageFilename,physicalWidth,physicalHeight,allowLowFeatureCount"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints.ImageEndpoint",
+    "name": "Response",
+    "fields": ""
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints.Model3dEndpoint",
+    "name": "Request",
+    "fields": "modelContent,modelFileName,scale,azimuthAngleMin,azimuthAngleMax,elevationAngleMin,elevationAngleMax,importUpVector,importForwardVector,importTranslation,systemRightVector,systemUpVector,systemForwardVector,generateDebugKeyframeImages,forceCADTraining"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints.Model3dEndpoint",
+    "name": "Response",
+    "fields": "generatedMeshModel,debugKeyframes"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints.QREndpoint",
+    "name": "Request",
+    "fields": "qrCodeContent,physicalSize"
+  },
+  {
+    "asm": "com.virnect.train.dll",
+    "ns": "VIRNECT.Net.Training.Endpoints.QREndpoint",
+    "name": "Response",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF",
+    "name": "Constants",
+    "fields": "VNT_Animation,VNT_NodeProperty,VNT_MediaResource,VNT_ChromaKey,VNT_Event,VNT_SetUpResources,VNT_Settings_Target,VNT_Settings_Environment,VNT_Settings_GlobalOverlay"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF",
+    "name": "ContentsPATH",
+    "fields": "mediaTempFolder"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF",
+    "name": "DataComponentExportContextCallbacks",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF",
+    "name": "DataComponentExportPlugin",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF",
+    "name": "GeneratorInfo",
+    "fields": "GeneratorName,Version"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF",
+    "name": "InstantiatedMediaObject",
+    "fields": "FindImageAsset,rootFolder,isDestoryCacheFile"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF",
+    "name": "UserPropertyExportContextCallbacks",
+    "fields": "includeTypes"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF",
+    "name": "UserPropertyExportPlugin",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF",
+    "name": "VirnectGLTFSceneExporter",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF",
+    "name": "VirnectGLTFSceneImporter",
+    "fields": "AddContentManager"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "ChromakeyExportContextCallbacks",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "ChromakeyExportPlugin",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "ChromakeyImportPlugin",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "DataComponentImportPlugin",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "EventImportPlugin",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "GLTFShaderFixPlugin",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "MaterialAlphaModeImportPlugin",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "MediaFileExportContextCallbacks",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "MediaFileExportPlugin",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "MediaFileImportPlugin",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "MediaId",
+    "fields": "Id"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "MediaResource",
+    "fields": "ResourceID,AccessorId,extension"
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "SetUpResourceImportPlugin",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "UserPropertyImportPlugin",
+    "fields": ""
+  },
+  {
+    "asm": "VIRNECT_Extension.dll",
+    "ns": "VirnectGLTF.Plugins",
+    "name": "VNT_video_chromakey",
+    "fields": "ThumbnailID,ChromaColor,Threshold,Smoothness,Blur,Sharpening,Despill,DespillLuminanceAdd"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.Common",
+    "name": "AcceptAllCertificatesSignedWithASpecificKeyPublicKey",
+    "fields": ""
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.Common.Enums",
+    "name": "NetworkMethods",
+    "fields": "value__,WebRequest_RESTAPI,TcpClient_Socket"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.Common.Interfaces",
+    "name": "IVirnectNetworkHelper",
+    "fields": ""
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper",
+    "name": "DataViewer",
+    "fields": "SelectedNetworkMethods,SelectedServerIndex,SelectedSelectFieldIndex,SelectedSelectFieldName,SelectedWhereFieldIndex,SelectedWhereFieldName,WhereFieldValue"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper",
+    "name": "VirnectTcpClient",
+    "fields": "IP,Port"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper",
+    "name": "VirnectWebRequest",
+    "fields": "Method,UseParameters,Parameters,UseHeaders,UseJsonContentType,Headers,UseFormData,FormData,JsonArray,UseDebugLog,IsAsynchronous,UseGenericType,SerializeType,SerializeTypeIsList,UseVirnectResponseGenericType,ResultText,ResultTextViewer"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper.Data",
+    "name": "KeyValue",
+    "fields": "Key,Value"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper.Data",
+    "name": "Post",
+    "fields": "userId,id,title,body"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper.Data",
+    "name": "Response`1",
+    "fields": "contents,responseCode"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper.Data",
+    "name": "TTS",
+    "fields": "ID,UI_Name,UI_Contents,TTS_KOR_Contents,TTS_ENG_Contents"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper.Enums",
+    "name": "Method",
+    "fields": "value__,GET,POST,PUT,DELETE"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper.Enums",
+    "name": "NetworkError",
+    "fields": "value__,NONE,ERROR_NETWORK_CONNECTION,ERROR_REQUEST_CANCEL"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper.Helper",
+    "name": "Extensions",
+    "fields": ""
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper.Helper",
+    "name": "Wrapper`1",
+    "fields": "array"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper.Test",
+    "name": "VirnectWebRequestTest",
+    "fields": "virnectWebRequest,SerializeType,SerializeTypeIsList,UseVirnectResponseGenericType"
+  },
+  {
+    "asm": "VirnectNetworkLibrary.dll",
+    "ns": "VirnectNetworkLibrary.Scripts.VirnectNetworkHelper.UnityEvent",
+    "name": "RequestResult",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.Binding.Adapters",
+    "name": "GameObjectToHierarchyAnimationAdapter",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.Binding.Adapters",
+    "name": "GameObjectToHierarchyCanvasAlphaAdapter",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.Binding.Adapters",
+    "name": "GameObjectToHierarchyEventAdapter",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.Binding.Adapters",
+    "name": "GameObjectToHierarchyIconAdapter",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.Binding.Adapters",
+    "name": "GameObjectToHierarchyIconColorAdapter",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.Binding.Adapters",
+    "name": "GameObjectToHierarchyTextColorAdapter",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.Binding.Adapters",
+    "name": "HierarchyIconAdapterOptions",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.Binding.Adapters",
+    "name": "HighlightSceneLayerAdapter",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.Binding.Adapters",
+    "name": "IEnumerableToIEnumerableOfExtenalResource",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.Binding.Adapters",
+    "name": "IEnumerableToIEnumerableOfModelMetadata",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.Binding.Adapters",
+    "name": "ProjectListItemThumbnailAdapter",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.Binding.Adapters",
+    "name": "SceneLayerObjectToHierarchyNameAdapter",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.ViewModels",
+    "name": "AssetViewModel",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.ViewModels",
+    "name": "LibraryViewModel",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.ViewModels",
+    "name": "MakeAnimationViewModel",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.ViewModels",
+    "name": "MakeInspectorViewModel",
+    "fields": "_isLock,AddComponentButton,Tabs"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.ViewModels",
+    "name": "MakeSceneViewModel",
+    "fields": "CurrentViewport"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.ViewModels",
+    "name": "ObjectLayerViewModel",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.ViewModels",
+    "name": "SceneLayerViewModel",
+    "fields": ""
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.ViewModels",
+    "name": "SortType",
+    "fields": "value__,DateDesc,NameAsc,NameDesc"
+  },
+  {
+    "asm": "Assembly-CSharp.dll",
+    "ns": "VITNECT.MakeEditor.ViewModels",
+    "name": "Viewport",
+    "fields": "value__,World,Screen,Target"
+  }
+]
