@@ -8,13 +8,33 @@
 > 변경은 표면에 안 드러날 수 있음 — **"표면 기준 관찰"** 성격.
 > **워크플로우**: 새 설치파일을 받으면 직전 버전과 diff → 여기에 버전·분석일과 함께 항목 추가.
 
-## [3.1.0.4] — 분석일 2026-07-01 (베이스라인)
+## [3.1.0.8] — 분석일 2026-07-01 (직전: 3.1.0.7)
 
-- **기준 빌드**: `MK-MakePC-MCP_20260622` (제품버전 `3.1.0.4`, Unity `6000.3.11f1`, Mono, build-guid `8a3f0926…`)
-- **상태**: 베이스라인 스냅샷 — 직전 버전이 없어 diff 없음. 이후 버전부터 `[Added]/[Modified]/[Removed]` 로 기록.
-- **다음 단계(미완)**: 이 빌드의 C# 어셈블리·에셋 인벤토리를 지문화해 컴포넌트 카탈로그를 확정하고
-  `doc/MAKE_FORMAT.md` 의 "추정/미관찰" 항목(예: `ImageComponent`·`VideoComponent`·`Model3DComponent`)을
-  실측으로 채운다.
+- **기준 빌드**: `MakeInstaller_3.1.0.8.exe` (Unity `6000.3.11f1`, Mono). clean 설치파일 추출(미실행).
+- **비교 대상**: `MakeInstaller_3.1.0.7.exe`. 파일 331개로 동일(추가/삭제 없음), 코드 변경은
+  `Assembly-CSharp.dll`(+7KB)·`VIRNECT_Extension.dll`(+8.5KB)에 집중. 상세 관찰 → [`doc/product/BUILD_3.1.0.8.md`](doc/product/BUILD_3.1.0.8.md).
+- 근거: C# 타입/필드 표면 diff(컴파일러 자동생성 제외).
+
+### Added
+- **REST API / 데이터 바인딩 서브시스템** — `VIRNECT.Components`: `RestApiComponent`, `RestAPIData`,
+  `RestAPISubscriber`, `ResponseHandler`, `ComparisonCondition`, `ComparisonType`(enum). 에디터:
+  `RestAPIDataEditor`, `RequestInfo(Editor)`, `ResponseHandlerEditor`, `ComparisonConditionEditor`,
+  `SubscribersDrawerEditor`, `SubscriberList`. → 콘텐츠가 외부 REST API를 호출/구독하고 응답 조건으로 액션 분기.
+- **AR 타겟 프리뷰** — `VIRNECT.Components.TargetPreviewComponent` 신규.
+- **glTF 데이터 컴포넌트 플러그인** — `VirnectGLTF.DataComponentExportPlugin` / `.Plugins.DataComponentImportPlugin`
+  (= `.make` 저장/로드 시 DataComponent 직렬화 경로).
+- 리스트 편집 UI — `ListEditorWithFooterButtons`, `ListEditorWithLabelAndAddButton`.
+
+### Modified
+- `VIRNECT.Components.RestAPISubscriber` — 필드 `+ResponseHandler`.
+- `TargetManagerExtensionData` — 필드 `+TargetPreviewObjectID`.
+- `VisualizationOptionType`(enum) — `+SceneLayout` (Skybox 와 All 사이).
+
+### Removed
+- `RequestDataDescriptor`/`RequestDataEditor`, `RequestDataList` 필드 비워짐 → `RequestInfo`/REST 서브시스템으로 대체.
+
+> 3.1.0.7 및 이전(3.1.0.4 등) 스냅샷은 참고용. 3.1.0.4 는 MCP 주입 빌드(`MK-MakePC-MCP`)라 clean 제품
+> diff 기준으로는 부적합 → clean 설치파일(3.1.0.7/3.1.0.8)만 비교에 사용.
 
 <!--
 항목 템플릿 (새 버전 도착 시 위에 추가):
